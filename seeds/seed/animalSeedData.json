@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Rocco",
+    "type": "Dog",
+    "age": "6",
+    "gender": "M",
+    "size": "Medium",
+    "breed": "Pitbull",
+    "healthComplications": "Glaucoma",
+    "imageFile": "examplefile.jpg"
+  },
+  {
+    "name": "Rocco",
+    "type": "Dog",
+    "age": "6",
+    "gender": "M",
+    "size": "Medium",
+    "breed": "Pitbull",
+    "healthComplications": "Glaucoma",
+    "imageFile": "examplefile.jpg"
+  }
+]
