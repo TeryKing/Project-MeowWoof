@@ -8,6 +8,7 @@ Animal.init(
     id: {
       type: DataTypes.UUIDV4,
       allowNull: false,
+      primaryKey: true,
     },
     species: {
       type: DataTypes.STRING,
