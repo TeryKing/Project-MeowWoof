@@ -1,0 +1,100 @@
+  <div class="card">
+    <article class="card-group-item">
+      <header class="card-header">
+        <h6 class="title">Pet Type</h6>
+      </header>
+      <div class="filter-content">
+        <div class="card-body">
+        <form>
+          <label class="form-check">
+            <input class="form-check-input" type="checkbox" value={{dog}}>
+            <span class="form-check-label">
+              Dog
+              {{#if dog}}
+              {{breedfordogs}}
+              {{gender}}
+              {{age}}
+              {{size}}
+              {{/if}}
+            </span>
+          </label> <!-- form-check.// -->
+          <label class="form-check">
+            <input class="form-check-input" type="checkbox" value={{cat}}>
+            <span class="form-check-label">
+            Cat
+              {{#if cat}}
+              {{breedforcats}}
+              {{gender}}
+              {{age}}
+              {{size}}
+              {{/if}}
+            </span>
+          </label>  <!-- form-check.// -->
+        </form>
+
+    </article> <!-- card-group-item.// -->
+    
+    <article class="card-group-item">
+      <header class="card-header">
+        <h6 class="title">Breed</h6>
+      </header>
+      <div class="filter-content">
+        <div class="card-body">
+        <label class="form-check">
+          <input class="form-check-input" type="radio" name="exampleRadio" value="">
+          <span class="form-check-label">
+            {{#each breed}}
+            {{/each}}
+          </span>
+        </label>
+        </div>
+      </div>
+    </article>
+    <article class="card-group-item">
+      <header class="card-header">
+        <h6 class="title">Gender</h6>
+      </header>
+      <div class="filter-content">
+        <div class="card-body">
+        <label class="form-check">
+          <input class="form-check-input" type="radio" name="exampleRadio" value="">
+          <span class="form-check-label">
+            {{#each gender}}
+            {{/each}}
+          </span>
+        </label>
+        </div>
+      </div>
+    </article>
+    <article class="card-group-item">
+      <header class="card-header">
+        <h6 class="title">Age</h6>
+      </header>
+      <div class="filter-content">
+        <div class="card-body">
+        <label class="form-check">
+          <input class="form-check-input" type="radio" name="exampleRadio" value="">
+          <span class="form-check-label">
+            {{#each age}}
+            {{/each}}
+          </span>
+        </label>
+        </div>
+      </div>
+    </article>
+    <article class="card-group-item">
+      <header class="card-header">
+        <h6 class="title">Size</h6>
+      </header>
+      <div class="filter-content">
+        <div class="card-body">
+        <label class="form-check">
+          <input class="form-check-input" type="radio" name="exampleRadio" value="">
+          <span class="form-check-label">
+            {{#each size}}
+            {{/each}}
+          </span>
+        </label>
+        </div>
+      </div>
+    </article>

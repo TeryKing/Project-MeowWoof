@@ -1,3 +1,16 @@
+header{
+    margin-top: 50px;
+}
 body{
-    background-image: url("/public/images/wallpaper.jpg");
+    background-image: url("./wallpaper.jpg");
+    background-size: 100%;
+}
+
+nav{
+    display: block;
+}
+
+
+.card{
+    max-width: 20%;
 }
