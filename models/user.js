@@ -9,9 +9,9 @@ class User extends Model {
 }
 User.init(
   {
-    id: {
-      type: DataTypes.UUIDV4,
-      allowNull: false,
+    user_id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV1,
       primaryKey: true,
     },
     first_name: {
@@ -37,7 +37,6 @@ User.init(
     },
     is_volunteer: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
     },
   },
   {
@@ -56,7 +55,6 @@ User.init(
       },
     },
     sequelize,
-    underscored: true,
     modelName: "user",
   }
 );
