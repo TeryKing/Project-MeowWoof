@@ -7,23 +7,15 @@ const userSeedData = require('./userSeedData.json');
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
 
-//   const readers = await Reader.bulkCreate(readerSeedData, {
-//     individualHooks: true,
-//     returning: true,
-//   });
+  await User.bulkCreate(userSeedData, {
+    individualHooks: true,
+    returning: true,
+  });
 
-//   for (const { id } of readers) {
-//     const newCard = await LibraryCard.create({
-//       reader_id: id,
-//     });
-//   }
-
-//   for (const book of bookSeedData) {
-//     const newBook = await Book.create({
-//       ...book,
-//       reader_id: readers[Math.floor(Math.random() * readers.length)].id,
-//     });
-//   }
+  await Animal.bulkCreate(animalSeedData, {
+    individualHooks: true,
+    returning: true,
+  });
 
   process.exit(0);
 };
