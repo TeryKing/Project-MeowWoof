@@ -1,9 +1,9 @@
 const router = require('express').Router();
 const { Animal, User } = require('../models');
-const checkLogin = require('../utils/checkLogin');
+// const checkLogin = require('../utils/checkLogin');
 
 // the homepage
-//Goal: render all the blogs. Needs the checkLogin middleware to seee if the user is logged in (if not the browser will be redirected to login screeen)
+//Goal: render all the animals. Needs the checkLogin middleware to see if the user is logged in (if not the browser will be redirected to login screen)
 //put the middleware back in
 router.get('/', async (req, res) => {
     // console.log("****1**")
@@ -23,10 +23,7 @@ router.get('/', async (req, res) => {
     );
       // console.log(blogData)
 
-    // Serialize data so the template can read it
-    // console.log("***4***")
-
-    //temporaily use this
+    //temporaily use this to see if the route works
     res.status(200).json(animalData);
 
     // Pass serialized data and session flag into template
@@ -38,3 +35,103 @@ router.get('/', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+//when the user clicks on one of the animals, it will render that animal by using its id
+//add the middleware for login
+//NEEDS WORK
+router.get('/search', async (req, res) => {
+    try {
+    
+    } catch (err) {
+        res.status(500).json(err);
+      }
+});
+
+//when the user clicks on one of the animals, it will render that animal by using its id
+//add middleware
+router.get('/animal/:id',  async (req, res) => {
+    try{
+        const animalID = await Animal.findByPk(req.params.id, 
+            {   
+                raw: true,
+                nest: true,
+                include: [
+                    { 
+                        model: Comment,
+                        attributes: ['comments'] 
+                    },
+                    { 
+                      model: User,
+                      attributes: ['name'] 
+                    }
+    
+                ],
+            }
+        );
+        res.status(200).json(animalID);
+        //must be commented out until we have the routes and handlebars working
+        // res.render('blog', {
+        //     blogs,
+        //     logged_in: req.session.logged_in
+        //   });
+
+    } catch {
+        res.status(500).json(err);
+    }
+})
+
+// add middleware
+router.get('/dashboard', async (req, res) => {
+    try {
+      // Find the logged in user based on the session ID
+      const userData = await User.findByPk(req.session.user_id, {
+        attributes: { exclude: ['password'] }
+      });
+  
+      const user = userData.get({ plain: true });
+  
+      res.status(200).json(user);
+      //must be commented out until we have the routes and handlebars working
+    //   res.render('dashboard', {
+    //     ...user,
+    //     logged_in: true
+    //   });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
+router.get('/login', (req, res) => {
+// If the user is already logged in, redirect the request to another route
+//must be commented out until we have the routes and handlebars working
+    // if (req.session.logged_in) {
+    //     res.redirect('/animal');
+    //     return;
+    // }
+
+    // res.render('login');
+});
+
+// add middleware
+//NEEDS work
+router.get('/surrender', async (req, res) => {
+    try {
+      // redirect to surrender form (only adopters has this)
+      const surrender = await User.findByPk(req.session.user_id, {
+        attributes: { exclude: ['password'] }
+      });
+  
+      const surrenderForm = surrender.get({ plain: true });
+  
+      res.status(200).json(surrenderForm);
+      //must be commented out until we have the routes and handlebars working
+    //   res.render('surrender', {
+    //     ...user,
+    //     logged_in: true
+    //   });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
+module.exports = router;
