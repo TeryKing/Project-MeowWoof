@@ -65,13 +65,5 @@ router.post('/logout', (req, res) => {
   }
 });
 
-//creates the email
-router.post('/email', (req, res) => {
-    try {
-
-    } catch {
-    res.status(400).json(err);
-    }
-  });
 
 module.exports = router;

@@ -7,7 +7,7 @@ const { Animal } = require('../../models');
 router.post('/', async (req, res) => {
     // console.log("checkpoint 1")
     try {
-      const newAnimal = await Blog.create({
+      const newAnimal = await Animal.create({
       ...req.body,
         user_id: req.session.user_id,
         
@@ -47,5 +47,32 @@ router.post('/', async (req, res) => {
       res.status(500).json(err);
     }
   });
+
+//updates animal info
+router.put('/:id', async (req, res) => {
+    try {
+        const updateAnimal = await Animal.update(
+            {
+              species: req.body.species,
+              name: req.body.name,
+              gender: req.body.gender,
+              breed: req.body.breed,
+              age: req.body.age,
+              size: req.body.size,
+              assigned_pets: req.body.assigned_pets,
+            },
+            {
+              where: {
+                animal_id: req.params.animal_id,
+              },
+            }
+          );
+        //comment out for now to see if routes work
+        //   return res.json(updateAnimal);
+      res.status(200).json(updateAnimal);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  })
   
   module.exports = router;

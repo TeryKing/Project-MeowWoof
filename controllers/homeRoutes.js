@@ -4,12 +4,8 @@ const { Animal, User } = require('../models');
 
 // the homepage
 //Goal: render all the animals. Needs the checkLogin middleware to see if the user is logged in (if not the browser will be redirected to login screen)
-//put the middleware back in
 router.get('/', async (req, res) => {
-    // console.log("****1**")
   try {
-    // console.log("***2***")
-
     const animalData = await Animal.findAll(
         {   raw: true,
             nest: true,
@@ -21,14 +17,13 @@ router.get('/', async (req, res) => {
             // ],
         }
     );
-      // console.log(blogData)
+      // console.log(animalData)
 
     //temporaily use this to see if the route works
     res.status(200).json(animalData);
 
-    // Pass serialized data and session flag into template
     // res.render('homepage', { 
-    //   blogData, 
+    //   animalData, 
     //   logged_in: req.session.logged_in   
     // });
   } catch (err) {
@@ -41,7 +36,13 @@ router.get('/', async (req, res) => {
 //NEEDS WORK
 router.get('/search', async (req, res) => {
     try {
-    
+        const searchAnimals = await User.findByPk(req.session.user_id, {
+            attributes: { exclude: ['password'] }
+          });
+      
+        const searchAnimalsDB = searchAnimals.get({ plain: true });
+        res.status(200).json(searchAnimalsDB);
+        
     } catch (err) {
         res.status(500).json(err);
       }
@@ -56,11 +57,7 @@ router.get('/animal/:id',  async (req, res) => {
                 raw: true,
                 nest: true,
                 include: [
-                    { 
-                        model: Comment,
-                        attributes: ['comments'] 
-                    },
-                    { 
+                                        { 
                       model: User,
                       attributes: ['name'] 
                     }
@@ -70,8 +67,8 @@ router.get('/animal/:id',  async (req, res) => {
         );
         res.status(200).json(animalID);
         //must be commented out until we have the routes and handlebars working
-        // res.render('blog', {
-        //     blogs,
+        // res.render('animal', {
+        //     animal,
         //     logged_in: req.session.logged_in
         //   });
 
@@ -113,7 +110,6 @@ router.get('/login', (req, res) => {
 });
 
 // add middleware
-//NEEDS work
 router.get('/surrender', async (req, res) => {
     try {
       // redirect to surrender form (only adopters has this)
@@ -122,7 +118,7 @@ router.get('/surrender', async (req, res) => {
       });
   
       const surrenderForm = surrender.get({ plain: true });
-  
+      
       res.status(200).json(surrenderForm);
       //must be commented out until we have the routes and handlebars working
     //   res.render('surrender', {
