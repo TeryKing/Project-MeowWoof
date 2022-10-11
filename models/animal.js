@@ -5,10 +5,10 @@ class Animal extends Model {}
 
 Animal.init(
   {
-    id: {
-      type: DataTypes.UUIDV4,
-      allowNull: false,
-      primaryKey: true,
+    animal_id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV1,
+      primaryKey: true
     },
     species: {
       type: DataTypes.STRING,
@@ -36,20 +36,13 @@ Animal.init(
     },
     arrival_date: {
       type: DataTypes.DATEONLY,
-      allowNull: false,
     },
     assigned_volunteer: {
-      type: DataTypes.UUIDV4,
-      allowNull: false,
-      references: {
-        model: "user",
-        key: "id",
-      },
+      type: DataTypes.BOOLEAN,
     },
   },
   {
     sequelize,
-    underscored: true,
     modelName: "animal",
   }
 );
