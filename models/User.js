@@ -10,10 +10,16 @@ class User extends Model {
 User.init(
   {
     user_id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV1,
+      type: DataTypes.INTEGER,
+      allowNull: false,
       primaryKey: true,
+      autoIncrement: true,
     },
+    // user_id: {
+    //   type: DataTypes.UUID,
+    //   defaultValue: DataTypes.UUIDV1,
+    //   primaryKey: true,
+    // },
     first_name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -38,6 +44,9 @@ User.init(
     is_volunteer: {
       type: DataTypes.BOOLEAN,
     },
+    assigned_pet: {
+      type: DataTypes.INTEGER,
+    },
   },
   {
     hooks: {
@@ -55,6 +64,7 @@ User.init(
       },
     },
     sequelize,
+    freezeTableName: true,
     modelName: "user",
   }
 );
