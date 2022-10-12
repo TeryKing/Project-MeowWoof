@@ -2,12 +2,14 @@
   <img class="card-img-top" src="..." alt="Card image cap">
   <div class="card-body">
     <h5 class="card-title">{{pet_name}}</h5>
-    <p class="card-text">{{pet_type}}<br>
-                            Breed:{{pet_breed}}<br>
+    <p class="card-text">{{species}}<br>
+                            Breed:{{dog_breed}}<br>
                             Age:{{pet_age}}<br>
                             Gender:{{pet_gender}}<br>
                             Size{{pet_size}}</p>
                             {{!-- all variables assigned are temporary. just filling something out --}}
-    <a href="#" class="btn btn-primary">{{target_pet}}</a> 
+    <a href= "/singletarget/{{target_pet}}" class="btn btn-primary">See more!</a> 
   </div>
 </div>
+
+<script src="/public/js/pet.js"></script>
