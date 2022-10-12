@@ -11,10 +11,7 @@
             <span class="form-check-label">
               Dog
               {{#if dog}}
-              {{breedfordogs}}
-              {{gender}}
-              {{age}}
-              {{size}}
+              {{dog}}
               {{/if}}
             </span>
           </label> <!-- form-check.// -->
@@ -23,10 +20,7 @@
             <span class="form-check-label">
             Cat
               {{#if cat}}
-              {{breedforcats}}
-              {{gender}}
-              {{age}}
-              {{size}}
+              {{cat}}
               {{/if}}
             </span>
           </label>  <!-- form-check.// -->
@@ -43,8 +37,12 @@
         <label class="form-check">
           <input class="form-check-input" type="radio" name="exampleRadio" value="">
           <span class="form-check-label">
-            {{#each breed}}
-            {{/each}}
+            {{#if dog}}
+            {{dogbreed}}
+            {{/if}} 
+            {{#if cat}}
+            {{catbreed}}
+            {{/if}}
           </span>
         </label>
         </div>
