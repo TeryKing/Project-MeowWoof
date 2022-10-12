@@ -23,16 +23,17 @@
                     </h1>
                     <form class="space-y-4 md:space-y-6" action="#">
                         <div>
-                            <label for="Name" class="block mb-2 text-sm font-medium text-gray-900">Pet Name</label>
-                            <input type="text" name="Name" id="Name"
+                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Pet Name</label>
+                            <input type="text" name="Name" id="name"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-pink-600 focus:border-pink-600 block w-full p-2.5"
                                 placeholder="Fluffy" required="">
                         </div>
                         <div>
-                            <label for="Species" class="block mb-2 text-sm font-medium text-gray-900">Species</label>
-                            <input type="text" name="Species" id="Species"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-pink-600 focus:border-pink-600 block w-full p-2.5"
-                                placeholder="Dog, Cat" required="">
+                            <label for="species" class="block mb-2 text-sm font-medium text-gray-900">species</label>
+                            <select id="species" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5">
+                                <option value="dog">Dog</option>
+                                <option value="cat">Cat</option>
+                            </select>
                         </div>
                         <div>
                             <label for="Breed" class="block mb-2 text-sm font-medium text-gray-900">Breed</label>
@@ -47,16 +48,21 @@
                                 placeholder="" required="">
                         </div>
                         <div>
-                            <label for="Gender" class="block mb-2 text-sm font-medium text-gray-900">Gender</label>
-                            <input type="text" name="Gender" id="Gender"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-pink-600 focus:border-pink-600 block w-full p-2.5"
-                                placeholder="Male, Female" required="">
+                            <label for="gender" class="block mb-2 text-sm font-medium text-gray-900">Gender</label>
+                            <select id="gender" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
                         </div>
                         <div>
-                            <label for="Size" class="block mb-2 text-sm font-medium text-gray-900">Size</label>
-                            <input type="text" name="Size" id="Size"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-pink-600 focus:border-pink-600 block w-full p-2.5"
-                                placeholder="Small, Medium, Large" required="">
+                        
+                            <label for="size" class="block mb-2 text-sm font-medium text-gray-900">Size</label>
+                            <select id="size" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5">
+                                <option value="small">Small (Less than 10 lbs) </option>
+                                <option value="medium">Medium (10 - 30lbs) </option>
+                                <option value="large">Large (larger than 30 lbs) </option>
+                            </select>
+
                         </div>
                         
                         <button type="submit" class="w-full text-white bg-pink-600 hover:bg-pink-700 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Submit</button>
