@@ -9,12 +9,7 @@ router.get('/', async (req, res) => {
     const animalData = await Animal.findAll(
         {   raw: true,
             nest: true,
-            // include: [
-            //     { 
-            //         model: User,
-            //         attributes: ['name'], 
-            //     }
-            // ],
+            
         }
     );
       // console.log(animalData)
@@ -31,7 +26,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-//when the user clicks on one of the animals, it will render that animal by using its id
+//when the user enter their perfernces, it will render on the screen 
 //add the middleware for login
 //NEEDS WORK
 router.get('/search', async (req, res) => {
@@ -50,44 +45,57 @@ router.get('/search', async (req, res) => {
 
 //when the user clicks on one of the animals, it will render that animal by using its id
 //add middleware
-router.get('/animal/:id',  async (req, res) => {
-    try{
-        const animalID = await Animal.findByPk(req.params.id, 
-            {   
-                raw: true,
-                nest: true,
-                include: [
-                                        { 
-                      model: User,
-                      attributes: ['name'] 
-                    }
-    
-                ],
-            }
-        );
-        res.status(200).json(animalID);
-        //must be commented out until we have the routes and handlebars working
-        // res.render('animal', {
-        //     animal,
-        //     logged_in: req.session.logged_in
-        //   });
+router.get('/animal/:animal_id',  async (req, res) => {
+  try{
+      const animalID = await Animal.findByPk(req.params.animal_id, 
+          {   
+              raw: true,
+              nest: true,
+              // include: [
+              //                         { 
+              //       model: User,
+              //       attributes: ['name'] 
+              //     }
+  
+              // ],
+          }
+      );
+      res.status(200).json(animalID);
+      //must be commented out until we have the routes and handlebars working
+      // res.render('animal', {
+      //     animal,
+      //     logged_in: req.session.logged_in
+      //   });
 
-    } catch {
-        res.status(500).json(err);
-    }
+  } catch {
+      res.status(500).json(err);
+  }
 })
 
-// add middleware
 router.get('/dashboard', async (req, res) => {
-    try {
       // Find the logged in user based on the session ID
-      const userData = await User.findByPk(req.session.user_id, {
+      const userData = await User.findAll(
+        {   
+          raw: true,
+          nest: true,
+        })
+
+      res.status(200).json(userData);
+    })
+
+
+// add middleware
+router.get('/dashboard/:user_id', async (req, res) => {
+  try {
+      // Find the logged in user based on the session ID
+      const userData = await User.findByPk(req.params.user_id, {
+        raw: true,
+        nest: true,
         attributes: { exclude: ['password'] }
       });
+  console.log(req.params)
   
-      const user = userData.get({ plain: true });
-  
-      res.status(200).json(user);
+      res.status(200).json(userData);
       //must be commented out until we have the routes and handlebars working
     //   res.render('dashboard', {
     //     ...user,
@@ -110,10 +118,10 @@ router.get('/login', (req, res) => {
 });
 
 // add middleware
-router.get('/surrender', async (req, res) => {
+router.get('/surrender/:user_id', async (req, res) => {
     try {
       // redirect to surrender form (only adopters has this)
-      const surrender = await User.findByPk(req.session.user_id, {
+      const surrender = await User.findByPk(req.params.user_id, {
         attributes: { exclude: ['password'] }
       });
   

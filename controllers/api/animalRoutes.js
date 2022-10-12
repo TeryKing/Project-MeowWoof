@@ -51,16 +51,16 @@ router.post('/', async (req, res) => {
 //updates animal info
 router.put('/:id', async (req, res) => {
     try {
-        const updateAnimal = await Animal.update(
-            {
-              species: req.body.species,
-              name: req.body.name,
-              gender: req.body.gender,
-              breed: req.body.breed,
-              age: req.body.age,
-              size: req.body.size,
-              assigned_pets: req.body.assigned_pets,
-            },
+        const updateAnimal = await Animal.update(req.body,
+            // {
+            //   species: req.body.species,
+            //   name: req.body.name,
+            //   gender: req.body.gender,
+            //   breed: req.body.breed,
+            //   age: req.body.age,
+            //   size: req.body.size,
+            //   assigned_pets: req.body.assigned_pets,
+            // },
             {
               where: {
                 animal_id: req.params.animal_id,

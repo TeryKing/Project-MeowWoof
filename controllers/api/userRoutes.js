@@ -24,16 +24,22 @@ router.post('/', async (req, res) => {
 
 //user logins
 router.post('/login', async (req, res) => {
+  console.log("*****")
+
   try {
+    console.log("checkpoint 1")
     const findUser = await User.findOne({ where: { email: req.body.email } });
+    console.log("checkpoint 2")
+
     if (!findUser) {
       res
         .status(400)
         .json({ message: 'Either the email or password is incorrect' });
       return;
     }
+    console.log("checkpoint 3")
 
-    const validPassword = await userData.checkPassword(req.body.password);
+    const validPassword = await findUser.checkPassword(req.body.password);
     if (!validPassword) {
       res
         .status(500)
@@ -41,13 +47,14 @@ router.post('/login', async (req, res) => {
       return;
     }
 
-console.log(req.session)
+console.log("***look at me", req.session)
     req.session.save(() => {
-      req.session.user_id = findUser.id;
+      req.session.user_id = findUser.user_id;
       req.session.logged_in = true;
 
-      res.json({ user: userData, message: 'You are logged in' });
+      res.json({ user: findUser, message: 'You are logged in' });
     });
+    console.log("checkpoint 4")
 
   } catch (err) {
     res.status(400).json(err);

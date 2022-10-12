@@ -18,7 +18,8 @@
     "last_name": "Underhood",
     "email": "mechagon@aol.com",
     "password": "musiccityyyy",
-    "is_volunteer": true
+    "is_volunteer": true,
+    "assigned_pet": 1
   },
   {
     "first_name": "Pho",
