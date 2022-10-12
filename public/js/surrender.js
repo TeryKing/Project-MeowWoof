@@ -5,7 +5,7 @@ const surrenderFormHandler = async (event) =>
     const name = document.querySelectorAll('#name').value.trim();
     const gender = document.querySelector('#gender');
     const breed = document.querySelector('#breed').value.trim();
-    const age = document.querySelector('#age').value.trim();
+    const age = document.querySelector('#age');
     const size = document.querySelector('#size');
 
     if (species && name && gender && breed && age && size) {
@@ -16,7 +16,7 @@ const surrenderFormHandler = async (event) =>
       });
   
       if (response.ok) {
-        alert('Form sucessfully submitted!');
+        alert('Form successfully submitted!');
         console.log('New pet added to database.');
       } else {
         alert('Failed to sign up.');
