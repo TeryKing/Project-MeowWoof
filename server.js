@@ -25,10 +25,10 @@ const sess = {
 app.use(session(sess));
 
 // in case we created some helper functions
-// const hbs = exphbs.create({ helpers });
+const hbs = exphbs.create();
 
 // Inform Express.js which template engine we're using
-// app.engine('handlebars', hbs.engine);
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 app.use(express.json());

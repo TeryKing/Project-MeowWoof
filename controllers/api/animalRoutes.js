@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const { Animal } = require('../../models');
-// const checkLogin = require('../../utils/checkLogin');
+const checkAuth = require('../../utils/checkAuth');
 
 //Add animal
 //add middleware
-router.post('/', async (req, res) => {
+router.post('/', checkAuth, async (req, res) => {
     try {
     // console.log("checkpoint 1")
 
@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
   
   //delete animal when its adopted
   //add middleware
-  router.delete('/:animal_id', async (req, res) => {
+  router.delete('/:animal_id', checkAuth, async (req, res) => {
     try {
       const animalData = await Animal.destroy({
         where: {
@@ -50,7 +50,7 @@ router.post('/', async (req, res) => {
   });
 
 //updates animal info
-router.put('/:animal_id', async (req, res) => {
+router.put('/:animal_id', checkAuth, async (req, res) => {
     try {
         const updateAnimal = await Animal.update(
             {

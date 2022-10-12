@@ -5,7 +5,8 @@ const { User } = require('../../models');
 router.post('/', async (req, res) => {
     try {
       const userDate = await User.create({
-        name: req.body.name,
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
         email: req.body.email,
         password: req.body.password,
       });
@@ -24,37 +25,28 @@ router.post('/', async (req, res) => {
 
 //user logins
 router.post('/login', async (req, res) => {
-  console.log("*****")
 
   try {
-    console.log("checkpoint 1")
     const findUser = await User.findOne({ where: { email: req.body.email } });
-    console.log("checkpoint 2")
 
     if (!findUser) {
       res
-        .status(400)
-        .json({ message: 'Either the email or password is incorrect' });
+        .status(400).json({ message: 'Either the email or password is incorrect' });
       return;
     }
-    console.log("checkpoint 3")
 
     const validPassword = await findUser.checkPassword(req.body.password);
     if (!validPassword) {
-      res
-        .status(500)
-        .json({ message: 'Either the email or password is incorrect' });
+      res.status(500).json({ message: 'Either the email or password is incorrect' });
       return;
     }
 
-console.log("***look at me", req.session)
     req.session.save(() => {
       req.session.user_id = findUser.user_id;
       req.session.logged_in = true;
 
       res.json({ user: findUser, message: 'You are logged in' });
     });
-    console.log("checkpoint 4")
 
   } catch (err) {
     res.status(400).json(err);
