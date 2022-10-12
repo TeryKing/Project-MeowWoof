@@ -43,6 +43,8 @@ Animal.init(
   },
   {
     sequelize,
+    freezeTableName: true,
+    underscored:true,
     modelName: "animal",
   }
 );
