@@ -46,9 +46,6 @@ Animal.init(
     assigned_volunteer: {
       type: DataTypes.BOOLEAN,
     },
-    assigned_pet: {
-      type: DataTypes.INTEGER,
-    },
   },
   {
     sequelize,

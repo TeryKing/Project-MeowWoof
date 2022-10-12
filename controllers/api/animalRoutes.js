@@ -5,13 +5,14 @@ const { Animal } = require('../../models');
 //Add animal
 //add middleware
 router.post('/', async (req, res) => {
-    // console.log("checkpoint 1")
     try {
+    // console.log("checkpoint 1")
+
       const newAnimal = await Animal.create({
       ...req.body,
-        user_id: req.session.user_id,
+        // user_id: req.session.user_id,
         
-      // ...console.log(req.session)
+      // ...console.log(req.body)
   
       });
       // console.log("checkpoint 2")
@@ -28,12 +29,12 @@ router.post('/', async (req, res) => {
   
   //delete animal when its adopted
   //add middleware
-  router.delete('/:id', async (req, res) => {
+  router.delete('/:animal_id', async (req, res) => {
     try {
       const animalData = await Animal.destroy({
         where: {
-          id: req.params.id,
-          user_id: req.session.user_id,
+          animal_id: req.params.animal_id,
+          // user_id: req.session.user_id,
         },
       });
   
@@ -49,18 +50,19 @@ router.post('/', async (req, res) => {
   });
 
 //updates animal info
-router.put('/:id', async (req, res) => {
+router.put('/:animal_id', async (req, res) => {
     try {
-        const updateAnimal = await Animal.update(req.body,
-            // {
-            //   species: req.body.species,
-            //   name: req.body.name,
-            //   gender: req.body.gender,
-            //   breed: req.body.breed,
-            //   age: req.body.age,
-            //   size: req.body.size,
-            //   assigned_pets: req.body.assigned_pets,
-            // },
+        const updateAnimal = await Animal.update(
+            {
+              species: req.body.species,
+              name: req.body.name,
+              gender: req.body.gender,
+              breed: req.body.breed,
+              age: req.body.age,
+              size: req.body.size,
+              arrival_date: req.body.arrival_date,
+              assigned_volunteer: req.body.assigned_volunteer,
+            },
             {
               where: {
                 animal_id: req.params.animal_id,
