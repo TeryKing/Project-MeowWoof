@@ -1,8 +1,9 @@
 header{
     margin-top: 50px;
 }
+
 body{
-    background-image: url("./wallpaper.jpg");
+    background-image: url("/images/wallpaper.jpg");
     background-size: 100%;
 }
 
