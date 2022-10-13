@@ -9,7 +9,7 @@ const surrenderFormHandler = async (event) =>
     const size = document.querySelector('#size').value;
 
     if (species && name && gender && breed && age && size) {
-      const response = await fetch('/api/users', {
+      const response = await fetch('/api/animals', {
         method: 'POST',
         body: JSON.stringify({ species, name, gender, breed, age, size }),
         headers: { 'Content-Type': 'application/json' },
