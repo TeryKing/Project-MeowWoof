@@ -46,6 +46,10 @@ Animal.init(
     assigned_volunteer: {
       type: DataTypes.BOOLEAN,
     },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    }
   },
   {
     sequelize,

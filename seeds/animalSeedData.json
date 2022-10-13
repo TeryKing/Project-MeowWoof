@@ -5,31 +5,43 @@
     "gender": "Male",
     "breed": "Tabby",
     "age": 7,
-    "size": "Medium"
+    "size": "Medium",
+    "arrival_date": "",
+    "assigned_volunteer": false,
+    "image": "https://cdn2.thecatapi.com/images/0Vz3XgaPM.jpg"
   },
   {
     "species": "Dog",
     "name": "Grady",
     "gender": "Male",
-    "breed": "Chihuahua",
+    "breed": "Scottish-Terrier",
     "age": 3,
-    "size": "Small"
+    "size": "Small",
+    "arrival_date": "",
+    "assigned_volunteer": false,
+    "image": "https://images.dog.ceo/breeds/terrier-scottish/n02097298_2671.jpg"
   },
   {
     "species": "Dog",
     "name": "Luke",
     "gender": "Male",
-    "breed": "Husky",
+    "breed": "Clumber",
     "age": 7,
-    "size": "Large"
+    "size": "Large",
+    "arrival_date": "",
+    "assigned_volunteer": false,
+    "image": "https://images.dog.ceo/breeds/clumber/n02101556_2023.jpg"
   },
   {
     "species": "Dog",
     "name": "Sebastion",
     "gender": "Male",
-    "breed": "Corgi",
+    "breed": "Whippet",
     "age": 1,
-    "size": "Small"
+    "size": "Small",
+    "arrival_date": "",
+    "assigned_volunteer": false,
+    "image": "https://images.dog.ceo/breeds/whippet/n02091134_16794.jpg"
   },
   {
     "species": "Cat",
@@ -37,7 +49,10 @@
     "gender": "Female",
     "breed": "Siamese",
     "age": 4,
-    "size": "Small"
+    "size": "Small",
+    "arrival_date": "",
+    "assigned_volunteer": false,
+    "image": "https://cdn2.thecatapi.com/images/ctp.jpg"
   },
   {
     "species": "Cat",
@@ -45,15 +60,21 @@
     "gender": "Female",
     "breed": "Birman",
     "age": 3,
-    "size": "Medium"
+    "size": "Medium",
+    "arrival_date": "",
+    "assigned_volunteer": false,
+    "image": "https://cdn2.thecatapi.com/images/MjAwMDc1MQ.jpg"
   },
   {
     "species": "Dog",
     "name": "Ralphy",
     "gender": "Male",
-    "breed": "Pitbull",
+    "breed": "Husky",
     "age": 1,
-    "size": "Medium"
+    "size": "Medium",
+    "arrival_date": "",
+    "assigned_volunteer": false,
+    "image": "https://images.dog.ceo/breeds/husky/n02110185_14594.jpg"
   },
   {
     "species": "Dog",
@@ -61,7 +82,10 @@
     "gender": "Male",
     "breed": "Dachshund",
     "age": 5,
-    "size": "Small"
+    "size": "Small",
+    "arrival_date": "",
+    "assigned_volunteer": false,
+    "image": "https://images.dog.ceo/breeds/hound-walker/n02089867_2472.jpg"
   },
   {
     "species": "Cat",
@@ -69,7 +93,10 @@
     "gender": "Female",
     "breed": "Sphynx",
     "age": 2,
-    "size": "Medium"
+    "size": "Medium",
+    "arrival_date": "",
+    "assigned_volunteer": false,
+    "image": "https://cdn2.thecatapi.com/images/oi.jpg"
   },
   {
     "species": "Cat",
@@ -77,6 +104,9 @@
     "gender": "Female",
     "breed": "Maine Coon",
     "age": 4,
-    "size": "Large"
+    "size": "Large",
+    "arrival_date": "",
+    "assigned_volunteer": false,
+    "image": "https://images.dog.ceo/breeds/clumber/n02101556_2023.jpg"
   }
 ]
