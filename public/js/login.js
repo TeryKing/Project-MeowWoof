@@ -22,14 +22,31 @@ const loginFormHandler = async (event) => {
   const signupFormHandler = async (event) => {
     event.preventDefault();
   
-    const username = document.querySelector('#username-signup').value.trim();
+    //const username = document.querySelector('#username-signup').value.trim();
     const email = document.querySelector('#email-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();
-  
-    if (username && email && password) {
+    const first_name = document.querySelector('#firstName-signup').value.trim();
+    const last_name = document.querySelector('#lastName-signup').value.trim();
+    const is_volunteer = document.querySelector('#volunteer-signup');
+    const adopt = document.querySelector('#adopt-signup');
+
+    if (volunteer.checked) {
+      is_volunteer.value == true;
+    } else {
+      is_volunteer.value == false;
+    };
+
+    if (adopt.checked) {
+      adopt.value == true;
+    } else { 
+      adopt.value == false;
+    };
+
+    
+    if (email && password && first_name && last_name) {
       const response = await fetch('/api/users', {
         method: 'POST',
-        body: JSON.stringify({ username, email, password }),
+        body: JSON.stringify({ email, password, first_name, last_name, is_volunteer, adopt }),
         headers: { 'Content-Type': 'application/json' },
       });
   
@@ -42,10 +59,14 @@ const loginFormHandler = async (event) => {
   };
   
   document
-    .querySelector('.login-form')
+    .querySelector('#login-form')
     .addEventListener('submit', loginFormHandler);
   
   document
-    .querySelector('.signup-form')
+    .querySelector('#signup-form')
     .addEventListener('submit', signupFormHandler);
+
+
+
+
   
