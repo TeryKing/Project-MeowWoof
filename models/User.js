@@ -44,7 +44,7 @@ User.init(
     is_volunteer: {
       type: DataTypes.BOOLEAN,
     },
-    assigned_pet: {
+    is_assigned_pet: {
       type: DataTypes.BOOLEAN,
     },
   },

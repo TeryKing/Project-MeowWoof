@@ -92,7 +92,7 @@ router.get('/animal/:animal_id',  async (req, res) => {
 })
 
 //doesn't serve any purpose aside from showing all users
-router.get('/dashboard',  async (req, res) => {
+router.get('/dashboard', checkAuth, async (req, res) => {
       // Find the logged in user based on the session ID
       const userData = await User.findAll(
         {   

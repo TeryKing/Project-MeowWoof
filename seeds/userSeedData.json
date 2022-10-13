@@ -21,7 +21,7 @@
     "email": "mechagon@aol.com",
     "password": "musiccityyyy",
     "is_volunteer": true,
-    "assigned_pet": false
+    "is_assigned_pet": false
   },
   {
     "first_name": "Pho",
