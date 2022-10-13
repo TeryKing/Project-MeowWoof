@@ -45,7 +45,7 @@ User.init(
       type: DataTypes.BOOLEAN,
     },
     assigned_pet: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.BOOLEAN,
     },
   },
   {
