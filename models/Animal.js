@@ -5,17 +5,17 @@ class Animal extends Model {}
 
 Animal.init(
   {
-    animal_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
-    },
     // animal_id: {
-    //   type: DataTypes.UUID,
-    //   defaultValue: DataTypes.UUIDV1,
-    //   primaryKey: true
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    //   primaryKey: true,
+    //   autoIncrement: true,
     // },
+    animal_id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV1,
+      primaryKey: true
+    },
     species: {
       type: DataTypes.STRING,
       allowNull: false,
