@@ -4,7 +4,7 @@ const checkAuth = require('../../utils/checkAuth');
 
 //Add animal
 //add middleware
-router.post('/', checkAuth, async (req, res) => {
+router.post('/',async (req, res) => {
     try {
     // console.log("checkpoint 1")
 
@@ -29,7 +29,7 @@ router.post('/', checkAuth, async (req, res) => {
   
   //delete animal when its adopted
   //add middleware
-  router.delete('/:animal_id', checkAuth, async (req, res) => {
+  router.delete('/:animal_id', async (req, res) => {
     try {
       const animalData = await Animal.destroy({
         where: {
