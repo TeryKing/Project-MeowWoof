@@ -29,15 +29,16 @@ router.get('/',  async (req, res) => {
 //add the middleware for login
 //NEEDS WORK
 router.get('/search', async (req, res) => {
-    try {
-        const searchAnimals = await User.findByPk(req.session.user_id, {
-            attributes: { exclude: ['password'] }
-          });
+  try {
+        // const searchAnimals = await Animal.findAll();
+
       
-        const searchAnimalsDB = searchAnimals.get({ plain: true });
-        res.status(200).json(searchAnimalsDB);
+        // const searchAnimalsDB = searchAnimals.get({ plain: true });
+        // res.status(200).json(searchAnimalsDB);
+        res.render('search',{logged_in: req.session.logged_in});
         
     } catch (err) {
+      console.log(err);
         res.status(500).json(err);
       }
 });
@@ -59,7 +60,7 @@ router.get('/animal/:animal_id',  async (req, res) => {
               // ],
           }
       );
-      // res.status(200).json(animalID);
+      res.status(200).json(animalID);
       //must be commented out until we have the routes and handlebars working
       res.render('animal', {
           animal,
@@ -106,34 +107,38 @@ router.get('/dashboard/:user_id', async (req, res) => {
     }
   });
 
-router.get('/redirect', (req, res) => {
+router.get('/login', (req, res) => {
 // If the user is already logged in, redirect the request to another route
 //must be commented out until we have the routes and handlebars working
-console.log("hit login")
     if (req.session.logged_in) {
-        res.redirect('/main');
+        res.redirect('/animal');
         return;
     }
 
     res.render('login');
 });
 
-// add middleware
-router.get('/surrender/:user_id', async (req, res) => {
-    try {
-      // redirect to surrender form (only adopters has this)
-      const surrender = await User.findByPk(req.params.user_id, {
-        attributes: { exclude: ['password'] }
-      });
-  
-      const surrenderForm = surrender.get({ plain: true });
+
+// router.get('/search', async (req, res) => {
+//   try {
+//         // const searchAnimals = await Animal.findAll();
+
       
-      res.status(200).json(surrenderForm);
+//         // const searchAnimalsDB = searchAnimals.get({ plain: true });
+//         // res.status(200).json(searchAnimalsDB);
+//         res.render('search',{logged_in: req.session.logged_in});
+        
+//     } catch (err) {
+//       console.log(err);
+//         res.status(500).json(err);
+//       }
+// });
+// add middleware
+router.get('/surrender', async (req, res) => {
+    try {
+      // res.status(200).json(surrenderForm);
       //must be commented out until we have the routes and handlebars working
-    //   res.render('surrender', {
-    //     ...user,
-    //     logged_in: true
-    //   });
+      res.render('surrender');
     } catch (err) {
       res.status(500).json(err);
     }
