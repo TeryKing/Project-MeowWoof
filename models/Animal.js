@@ -40,12 +40,16 @@ Animal.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    arrival_date: {
-      type: DataTypes.DATEONLY,
-    },
-    assigned_volunteer: {
+    // arrival_date: {
+    //   type: DataTypes.DATEONLY,
+    // },
+    is_assigned_volunteer: {
       type: DataTypes.BOOLEAN,
     },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    }
   },
   {
     sequelize,

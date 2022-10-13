@@ -5,7 +5,7 @@ const loginFormHandler = async (event) => {
     const password = document.querySelector('#password-login').value.trim();
   
     if (email && password) {
-      const response = await fetch('/api/users/login', {
+      const response = await fetch('/api/user/login', {
         method: 'POST',
         body: JSON.stringify({ email, password }),
         headers: { 'Content-Type': 'application/json' },
@@ -27,26 +27,20 @@ const loginFormHandler = async (event) => {
     const password = document.querySelector('#password-signup').value.trim();
     const first_name = document.querySelector('#firstName-signup').value.trim();
     const last_name = document.querySelector('#lastName-signup').value.trim();
-    const is_volunteer = document.querySelector('#volunteer-signup');
-    const adopt = document.querySelector('#adopt-signup');
+    const is_volunteer = document.querySelector('#volunteer-signup').value;
+    // const adopt = document.querySelector('#adopt-signup'); -- might not be needed since adopt data is not in our user model
 
-    if (volunteer.checked) {
-      is_volunteer.value == true;
-    } else {
-      is_volunteer.value == false;
-    };
-
-    if (adopt.checked) {
-      adopt.value == true;
-    } else { 
-      adopt.value == false;
-    };
+    // if (volunteer.checked) {
+    //   is_volunteer.value == true;
+    // } else {
+    //   is_volunteer.value == false;
+    // };
 
     
     if (email && password && first_name && last_name) {
-      const response = await fetch('/api/users', {
+      const response = await fetch('/api/user', {
         method: 'POST',
-        body: JSON.stringify({ email, password, first_name, last_name, is_volunteer, adopt }),
+        body: JSON.stringify({ email, password, first_name, last_name, is_volunteer }),
         headers: { 'Content-Type': 'application/json' },
       });
   

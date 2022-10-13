@@ -4,20 +4,21 @@ const { Animal, User } = require('../models');
 const checkAuth = require('../utils/checkAuth');
 
 // the homepage
-//Goal: render all the animals. 
+//it will render a random animal to be the pet of the day
 router.get('/',  async (req, res) => {
   try {
     const animalData = await Animal.findAll(
         {   raw: true,
             nest: true,
-            
+            attributes: { exclude: ['animal_id', 'arrival_date', 'assigned_volunteer', 'createdAt', 'updatedAt'] }
         }
     );
-    //temporaily use this to see if the route works
-    // res.status(200).json(animalData);
 
+    const randomAnimal = animalData[Math.floor(Math.random() * animalData.length)];
+    console.log(randomAnimal)
+    
     res.render('homepage', { 
-      animalData, 
+      randomAnimal, 
       logged_in: req.session.logged_in   
     });
   } catch (err) {
@@ -25,17 +26,42 @@ router.get('/',  async (req, res) => {
   }
 });
 
-//when the user enter their perfernces, it will render on the screen 
+//Goal: reder all the animals. 
 //add the middleware for login
-//NEEDS WORK
 router.get('/search', async (req, res) => {
   try {
-        // const searchAnimals = await Animal.findAll();
-
+    const animalData = await Animal.findAll(
+          {   raw: true,
+              nest: true,
+              
+          }
+      );
       
-        // const searchAnimalsDB = searchAnimals.get({ plain: true });
-        // res.status(200).json(searchAnimalsDB);
-        res.render('search',{logged_in: req.session.logged_in});
+      res.render('search', { 
+        animalData, 
+        logged_in: req.session.logged_in   
+      });
+        
+    } catch (err) {
+      console.log(err);
+        res.status(500).json(err);
+      }
+});
+
+//this page displays the users preference in animals after hitting the apply filter button
+//Needs work
+router.get('/results', async (req, res) => {
+  try {
+        const animalData = await Animal.findAll(
+          {   raw: true,
+              nest: true,
+              
+          })
+      
+        res.render('filter', { 
+          animalData, 
+          logged_in: req.session.logged_in   
+        });
         
     } catch (err) {
       console.log(err);
@@ -51,13 +77,6 @@ router.get('/animal/:animal_id',  async (req, res) => {
           {   
               raw: true,
               nest: true,
-              // include: [
-              //                         { 
-              //       model: User,
-              //       attributes: ['name'] 
-              //     }
-  
-              // ],
           }
       );
       res.status(200).json(animalID);
@@ -73,7 +92,7 @@ router.get('/animal/:animal_id',  async (req, res) => {
 })
 
 //doesn't serve any purpose aside from showing all users
-router.get('/dashboard',  async (req, res) => {
+router.get('/dashboard', checkAuth, async (req, res) => {
       // Find the logged in user based on the session ID
       const userData = await User.findAll(
         {   
@@ -96,12 +115,12 @@ router.get('/dashboard/:user_id', async (req, res) => {
       });
   console.log(req.params)
   
-      res.status(200).json(userData);
+      // res.status(200).json(userData);
       //must be commented out until we have the routes and handlebars working
-    //   res.render('dashboard', {
-    //     ...user,
-    //     logged_in: true
-    //   });
+      res.render('volunteer', {
+        ...user,
+        logged_in: true
+      });
     } catch (err) {
       res.status(500).json(err);
     }
@@ -109,7 +128,6 @@ router.get('/dashboard/:user_id', async (req, res) => {
 
 router.get('/login', (req, res) => {
 // If the user is already logged in, redirect the request to another route
-//must be commented out until we have the routes and handlebars working
     if (req.session.logged_in) {
         res.redirect('/animal');
         return;
@@ -118,26 +136,21 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
+// Signup form
+router.get('/signup', (req, res) => {
+  // If the user is already logged in, redirect the request to another route
+      if (req.session.logged_in) {
+          res.redirect('/');
+          return;
+      }
+  
+      res.render('signup');
+  });
 
-// router.get('/search', async (req, res) => {
-//   try {
-//         // const searchAnimals = await Animal.findAll();
 
-      
-//         // const searchAnimalsDB = searchAnimals.get({ plain: true });
-//         // res.status(200).json(searchAnimalsDB);
-//         res.render('search',{logged_in: req.session.logged_in});
-        
-//     } catch (err) {
-//       console.log(err);
-//         res.status(500).json(err);
-//       }
-// });
 // add middleware
 router.get('/surrender', async (req, res) => {
     try {
-      // res.status(200).json(surrenderForm);
-      //must be commented out until we have the routes and handlebars working
       res.render('surrender');
     } catch (err) {
       res.status(500).json(err);
