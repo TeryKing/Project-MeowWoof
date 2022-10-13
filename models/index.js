@@ -5,8 +5,8 @@ const Animal = require("./Animal");
 //     foreignKey: 'user_id',
 // });
 
-Animal.belongsTo(User, {
-    foreignKey: 'animal_id',
-});
+// Animal.belongsTo(User, {
+//     foreignKey: 'animal_id',
+// });
 
 module.exports = { User, Animal };
