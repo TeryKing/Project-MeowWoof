@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const { Animal, User } = require('../models');
+//Middleware
 const checkAuth = require('../utils/checkAuth');
 
 // the homepage
-//Goal: render all the animals. Needs the checkLogin middleware to see if the user is logged in (if not the browser will be redirected to login screen)
+//Goal: render all the animals. 
 router.get('/',  async (req, res) => {
   try {
     const animalData = await Animal.findAll(
@@ -12,9 +13,8 @@ router.get('/',  async (req, res) => {
             
         }
     );
-      // console.log(animalData)
-
     //temporaily use this to see if the route works
+    // res.status(200).json(animalData);
 
     res.render('homepage', { 
       animalData, 
@@ -60,18 +60,19 @@ router.get('/animal/:animal_id',  async (req, res) => {
               // ],
           }
       );
-      // res.status(200).json(animalID);
+      res.status(200).json(animalID);
       //must be commented out until we have the routes and handlebars working
-      // res.render('animal', {
-      //     animal,
-      //     logged_in: req.session.logged_in
-      //   });
+      res.render('animal', {
+          animal,
+          logged_in: req.session.logged_in
+        });
 
   } catch {
       res.status(500).json(err);
   }
 })
 
+//doesn't serve any purpose aside from showing all users
 router.get('/dashboard',  async (req, res) => {
       // Find the logged in user based on the session ID
       const userData = await User.findAll(
@@ -110,7 +111,7 @@ router.get('/login', (req, res) => {
 // If the user is already logged in, redirect the request to another route
 //must be commented out until we have the routes and handlebars working
     if (req.session.logged_in) {
-        res.redirect('/search');
+        res.redirect('/animal');
         return;
     }
 
