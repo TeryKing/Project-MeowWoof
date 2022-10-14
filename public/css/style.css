@@ -1,17 +1,54 @@
-header{
-    margin-top: 50px;
+header {
+  margin-top: 50px;
 }
 
-body{
-    background-image: url("/images/wallpaper.jpg");
-    background-size: 100%;
+body {
+  /* background-image: url("/images/wallpaper.jpg");
+  background-size: 100%; */
+
 }
 
-nav{
-    display: block;
+nav {
+  display: block;
 }
 
+.card {
+  max-width: 20%;
+}
 
-.card{
-    max-width: 20%;
+#homeBanner {
+  z-index: -1;
+  width: 100%;
+}
+
+#siteTitleBannerText {
+    font-family: 'Ribeye', cursive;
+    font-size: 5rem;
+}
+#siteSubheaderBannerText {
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-size: 2rem;
+}
+
+.siteBannerText {
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.siteBannerTextAlternate {
+  color:rgb(0, 0, 0);
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.pageBrakes {
+  background-color: rgb(255, 254, 213);
+  border: solid 3px black;
+}
+footer {
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-size: 1rem;
+  font-weight: bold;
 }
