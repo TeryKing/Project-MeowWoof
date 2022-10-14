@@ -36,9 +36,13 @@ router.get('/search', async (req, res) => {
               
           }
       );
-      
+      const breeds = animalData.map((animal)=>
+        animal.breed
+      )
+      const uniquebreeds = [...new Set([...breeds])]
       res.render('search', { 
         animalData, 
+        uniquebreeds,
         logged_in: req.session.logged_in   
       });
         
@@ -52,16 +56,80 @@ router.get('/search', async (req, res) => {
 //Needs work
 router.get('/results', async (req, res) => {
   try {
-        const animalData = await Animal.findAll(
-          {   raw: true,
-              nest: true,
-              
-          })
-      
-        res.render('filter', { 
-          animalData, 
-          logged_in: req.session.logged_in   
-        });
+    // const filterResults = async (event) =>
+    // event.preventDefault();
+  
+    // document.querySelector('#dog').addEventListener('checkbox',filterResults);
+    // document.querySelector('#cat').addEventListener('checkbox',filterResults);
+    // const species = document.querySelector('#species').value;
+
+    // const dog
+    // const gender = document.querySelector('#gender').value;
+    // const breed = document.querySelector('#breed').value.trim();
+    // const age = document.querySelector('#age').value;
+    // const size = document.querySelector('#size').value;
+
+    // if (species) {
+    //   const response = await fetch('/results', {
+    //     method: 'GET',
+        
+    //   });
+    // }
+  
+  // document
+  //   .querySelector('#applyfilter')
+  //   .addEventListener('button', filterResults);
+
+        console.log(req.query.species)
+        console.log(req.query.breed)
+        console.log("yeet", req.query) 
+        const where = {
+          ...(req.query.breed && {breed: req.query.breed}),
+          ...(req.query.species && {species: req.query.species}),
+          ...(req.query.age && {age: req.query.age}),
+          ...(req.query.gender && {gender: req.query.gender}),
+          ...(req.query.size && {size: req.query.size})
+
+        }
+        console.log(where);
+        const animalData = await Animal.findAll({where,raw: true});
+        // res.json({species: req.query.species, breed: req.query.breed});
+        
+      // if(req.query.species && req.query.breed){
+      //   const animalData = await Animal.findAll(
+      //     {   
+      //         where: {
+      //           species: req.query.species,
+      //           breed: req.query.breed
+      //           //add 
+
+      //         }
+      //     })
+      // }
+      // else if(req.query.species){
+      //   const animalData = await Animal.findAll(
+      //     {   
+      //         where: {
+      //           species: req.query.species,
+      //           //add 
+
+      //         }
+      //     })
+      // }
+      // else if(req.query.breed){
+      //   const animalData = await Animal.findAll(
+      //     {   
+      //         where: {
+      //           breed: req.query.breed
+      //           //add 
+      //         }
+      //     })
+      // }
+          res.json({animalData})
+        // res.render('filter', { 
+        //   animalData, 
+        //   logged_in: req.session.logged_in   
+        // });
         
     } catch (err) {
       console.log(err);
