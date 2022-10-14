@@ -4,79 +4,73 @@
     "last_name": "Trotsky",
     "email": "hammerandsickly@mail.com",
     "password": "stalinstinks",
-    "is_volunteer": true,
-    "assigned_pet": false
+    "is_volunteer": true
   },
   {
     "first_name": "Forest",
     "last_name": "Gump",
     "email": "ilikerunning@hotmail.com",
     "password": "jennyjennyjenny",
-    "is_volunteer": false,
-    "assigned_pet": false
+    "is_volunteer": false
   },
   {
     "first_name": "Carry",
     "last_name": "Underhood",
     "email": "mechagon@aol.com",
     "password": "musiccityyyy",
-    "is_volunteer": true,
-    "is_assigned_pet": false
+    "is_volunteer": true
   },
   {
     "first_name": "Pho",
     "last_name": "Soundsgud",
     "email": "hotterpot@hotmail.com",
     "password": "noodleboi",
-    "is_volunteer": true,
-    "assigned_pet": false
+    "is_volunteer": true
   },
   {
     "first_name": "Samantha",
     "last_name": "Ahtnamas",
     "email": "crypticsoul@gmail.com",
     "password": "racecar",
-    "is_volunteer": true,
-    "assigned_pet": false
+    "is_volunteer": true
   },
   {
     "first_name": "Meatza",
     "last_name": "Pizzah",
     "email": "peppertony@mail.com",
     "password": "coolbreeze",
-    "is_volunteer": true,
-    "assigned_pet": false
+    "is_volunteer": true
   },
   {
     "first_name": "Salad",
     "last_name": "Fingerz",
     "email": "bingbong98@hotmail.com",
     "password": "vegangang",
-    "is_volunteer": false,
-    "assigned_pet": false
+    "is_volunteer": false
+
   },
   {
     "first_name": "Ash",
     "last_name": "Caughtem",
     "email": "theverybest@aol.com",
     "password": "pikapikachooooo",
-    "is_volunteer": true,
-    "assigned_pet": false
+    "is_volunteer": true
+
   },
   {
     "first_name": "Salamander",
     "last_name": "Salsa",
     "email": "cooolnamebro@hotmail.com",
     "password": "noodleboi",
-    "is_volunteer": true,
-    "assigned_pet": false
+    "is_volunteer": true
+
   },
   {
     "first_name": "Richard",
     "last_name": "Christmas",
     "email": "douglasfurgod@gmail.com",
     "password": "verymerryguy",
-    "is_volunteer": true,
-    "assigned_pet": false
+    "is_volunteer": true
+
   }
 ]
