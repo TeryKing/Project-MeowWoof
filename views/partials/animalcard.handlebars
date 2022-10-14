@@ -1,19 +1,26 @@
-<section class="">
-    <div class="w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:border-pink-600">
-        <div class="flex flex-col items-center pb-10 pt-10">
-            <img class="mb-3 w-64 h-64 full shadow-lg" src="{{animal.image}}" alt="{{animal.name}}">
-            <h5 class="mb-1 text-xl font-medium text-gray-900">{{animal.name}}</h5>
-            <p class="text-sm text-gray-500">{{animal.breed}}</p>
-            <p class="text-sm text-gray-500">{{animal.size}}</p>
-            <p class="text-sm text-gray-500">{{animal.gender}}</p>
-            <p class="text-sm text-gray-500">{{animal.age}}</p>
-            <div class="flex mt-4 space-x-3 md:mt-6">
-              {{#if loggedIn}}
-                <a href="#" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-pink-700 rounded-lg hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300">Adopt me! &#9829; Message a volunteer</a>
-              {{else}}
-                <a href="#" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-pink-700 rounded-lg hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300">Interested? Log in to adopt</a>
-              {{/if}}
-            </div>
+<section class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+        <div class="flex flex-col text-center w-full mb-20">
+            <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">ADOPTABLE PETS</h1>
+        </div>
+        <div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 pt-6 gap-8">
+            <div class="w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:border-pink-600">
+                <div class="flex flex-col items-center pb-10 pt-10">
+                    <img class="mb-3 w-64 h-64 full shadow-lg" src="/public/images/CAT.jpg" alt="{{animal.name}}">
+                    <h5 class="mb-1 text-xl font-medium text-gray-900">{{animal.name}}</h5>
+                    <p class="text-sm text-gray-500">{{animal.breed}}</p>
+                    <p class="text-sm text-gray-500">{{animal.size}}</p>
+                    <p class="text-sm text-gray-500">{{animal.gender}}</p>
+                    <p class="text-sm text-gray-500">{{animal.age}}</p>
+                    <div class="flex mt-4 space-x-3 md:mt-6">
+                        {{#if loggedIn}}
+                        <a href="/email" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-pink-700 rounded-lg hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300">Adopt me! &#9829; Message a volunteer</a>
+                        {{else}}
+                        <a href="/login" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-pink-700 rounded-lg hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300">Interested? Log in to adopt</a>
+                        {{/if}}
+                    </div>
+              </div>
         </div>
     </div>
 </section>
+    
