@@ -1,17 +1,19 @@
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">{{pet_name}}</h5>
-    <p class="card-text">{{species}}<br>
-                            Breed:{{cat_breed}}<br>
-                            Age:{{pet_age}}<br>
-                            Gender:{{pet_gender}}<br>
-                            Size{{pet_size}}</p>
-                            {{!-- all variables assigned are temporary. just filling something out --}}
-    <a href= "/singletarget/{{target_pet}}" class="btn btn-primary">See more!</a> 
-  </div>
-</div>
-
-<script src="/public/js/pet.js"></script>
-
-{{!-- this needs to be 1 card for both pets --}}
+<section class="">
+    <div class="w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:border-pink-600">
+        <div class="flex flex-col items-center pb-10 pt-10">
+            <img class="mb-3 w-64 h-64 full shadow-lg" src="{{animal.image}}" alt="{{animal.name}}">
+            <h5 class="mb-1 text-xl font-medium text-gray-900">{{animal.name}}</h5>
+            <p class="text-sm text-gray-500">{{animal.breed}}</p>
+            <p class="text-sm text-gray-500">{{animal.size}}</p>
+            <p class="text-sm text-gray-500">{{animal.gender}}</p>
+            <p class="text-sm text-gray-500">{{animal.age}}</p>
+            <div class="flex mt-4 space-x-3 md:mt-6">
+              {{#if loggedIn}}
+                <a href="#" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-pink-700 rounded-lg hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300">Adopt me! &#9829; Message a volunteer</a>
+              {{else}}
+                <a href="#" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-pink-700 rounded-lg hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300">Interested? Log in to adopt</a>
+              {{/if}}
+            </div>
+        </div>
+    </div>
+</section>
