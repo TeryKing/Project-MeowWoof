@@ -1,10 +1,82 @@
-<div >
+<section class="container-xl text-center">
+  <div class="pageBrakes">
+    <h1 id="siteTitleBannerText">MeowWoof</h1>
+    <p class="siteBannerText">
+      Completing Families Since 2022
+    </p>
+  </div>
+</section>
+
+
+<section class="img-fluid">
+  <img
+    src="/images/homepage_banner_.jpg"
+    class=""
+    alt=""
+    id="homeBanner"
+  />
+</section>
+
+<section class="container-xl text-center bg-light siteBannerTextAlternate">
+  <div>
+    <h2 class="pt-4" id="siteSubheaderBannerText">
+      🦴 Our Mission 🦴
+    </h2>
+    <p class="py-4">
+      “MeowWoof provides care, comfort and compassion to animals in need while engaging the hearts, hands and minds of our community to bring about an end to abandoned and orphaned shelter animals. All lives are precious and we will continue to do our part to fortify that belief.”
+    </p>
+  </div>
+</section>
+
+<section class="container-xl text-center">
+  <div class="">
+    <h2 class="siteBannerText pageBrakes py-5">
+      Meet Some of Our Local Residents!
+    </h2>
+  </div>
+</section>
+
+<section>
+  <div class="row d-flex justify-content-around py-5">
     <div>
-      {{randomAnimal.species}}
-      {{randomAnimal.name}}
-      {{randomAnimal.gender}}
-      {{randomAnimal.breed}}
-      {{randomAnimal.age}}
-      {{randomAnimal.size}}
+      {{> homepageAnimalCard}}
     </div>
-</div>
+    
+    <div>
+      {{> homepageAnimalCard}}
+    </div>
+
+    <div>
+      {{> homepageAnimalCard}}
+    </div>
+
+    <div>
+      {{> homepageAnimalCard}}
+    </div>
+  </div>
+
+</section>
+
+<section class="container-xl text-center">
+  <div class="">
+    <h2 class="siteBannerText pageBrakes py-4">
+      <br />
+      Are you looking to contribute? Sign-up and join our wonderful group of
+      volunteers!
+      <br />
+    </h2>
+  </div>
+</section>
+
+<section class="img-fluid">
+  <img
+    src="/images/volunteer_banner.jpg"
+    class=""
+    alt=""
+    id="volunteerBanner"
+  />
+</section>
+
+<footer class="text-center p-3">
+  © 2022 MeowWoof. All Rights Reserved.
+</footer>
