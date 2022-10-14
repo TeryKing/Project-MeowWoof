@@ -44,9 +44,13 @@ User.init(
     is_volunteer: {
       type: DataTypes.BOOLEAN,
     },
-    is_assigned_pet: {
-      type: DataTypes.BOOLEAN,
-    },
+    // assigned_pet: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: 'animal',
+    //     key: 'animal_id',
+    //   },
+    // },
   },
   {
     hooks: {

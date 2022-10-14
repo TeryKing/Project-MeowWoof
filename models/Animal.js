@@ -43,8 +43,13 @@ Animal.init(
     // arrival_date: {
     //   type: DataTypes.DATEONLY,
     // },
-    is_assigned_volunteer: {
-      type: DataTypes.BOOLEAN,
+    assigned_volunteer: {
+      type: DataTypes.UUID,
+      allowNull: true,
+      references: {
+        model: 'user',
+        key: 'user_id',
+      },
     },
     image: {
       type: DataTypes.STRING,

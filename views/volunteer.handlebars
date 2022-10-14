@@ -13,12 +13,41 @@
 
 <body>
 
- {{nav}}
+ {{>nav}}
   
 <main>
-    {{assigned_pets}}
+  <h1>These animals are under your care!</h1>
+    {{#each assignedAnimal}}
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{assignedAnimal.image}}" alt="Picture of a beautiful animal">
+          <div class="card-body">
+            <h5 class="card-title">{{assignedAnimal.name}}</h5>
+            <p class="card-text">{{assignedAnimal.species}}<br>
+                            Breed:{{assignedAnimal.breed}}<br>
+                            Age:{{assignedAnimal.Age}}<br>
+                            Gender:{{assignedAnimal.gender}}<br>
+                            Size{{assignedAnimal.size}}</p>
+         </div>
+      </div>
+    {{/each}}
 </main>
+<aside>
 
+    <form>
+    <h3>Cats</h3>
+    {{#each cats}}
+      <input type="checkbox" id="{{cats.name}}" name="{{cats.name}}" value="{{cats.name}}">
+      <label for="{{cats.name}}"> {{cats.name}}</label><br>
+    {{/each}}
+    <h3>Dogs</h3>
+    {{#each dogs}}
+      <input type="checkbox" id="{{dogs.name}}" name="{{dogs.name}}" value="{{dogs.name}}">
+      <label for=""{{dogs.name}}""> "{{dogs.name}}"</label><br>
+    {{/each}}
+      <input type="submit" value="Submit">
+    </form>
+
+</aside>
 
 
 <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>

@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { NIL } = require('uuid');
 const { Animal, User } = require('../models');
 //Middleware
 const checkAuth = require('../utils/checkAuth');
@@ -160,33 +161,58 @@ router.get('/animal/:animal_id',  async (req, res) => {
 })
 
 //doesn't serve any purpose aside from showing all users
-router.get('/dashboard', checkAuth, async (req, res) => {
-      // Find the logged in user based on the session ID
-      const userData = await User.findAll(
-        {   
-          raw: true,
-          nest: true,
-        })
+// router.get('/dashboard', checkAuth, async (req, res) => {
+//       // Find the logged in user based on the session ID
+//       const userData = await User.findAll(
+//         {   
+//           raw: true,
+//           nest: true,
+//         })
 
-      res.status(200).json(userData);
-    })
+//       res.status(200).json(userData);
+//     })
 
 
 // add middleware
-router.get('/dashboard/:user_id', async (req, res) => {
+router.get('/dashboard/',  async (req, res) => {
   try {
       // Find the logged in user based on the session ID
-      const userData = await User.findByPk(req.params.user_id, {
+      const userData = await User.findByPk("8c464600-4b61-11ed-a035-51544ac70a62", {
         raw: true,
-        nest: true,
         attributes: { exclude: ['password'] }
       });
-  console.log(req.params)
+      const assignedAnimals = await Animal.findAll({
+        where: {
+          assigned_volunteer: "8c464600-4b61-11ed-a035-51544ac70a62"
+        },
+        raw: true
+      }
+      )
+      const unassignedCats = await Animal.findAll({
+        where: {
+          species: 'Cat',
+          assigned_volunteer: null
+        },
+        raw: true
+      }
+      )
+      const unassignedDogs = await Animal.findAll({
+        where: {
+          species: 'Dog',
+          assigned_volunteer: null
+        },
+        raw: true
+      }
+      )
+  console.log(unassignedCats, unassignedDogs)
   
       // res.status(200).json(userData);
       //must be commented out until we have the routes and handlebars working
       res.render('volunteer', {
-        ...user,
+        assignedAnimal: assignedAnimals,
+        user: userData,
+        dogs: unassignedDogs,
+        cats: unassignedCats,
         logged_in: true
       });
     } catch (err) {
