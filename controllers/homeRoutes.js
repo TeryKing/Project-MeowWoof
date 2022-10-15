@@ -37,6 +37,11 @@ router.get('/search', async (req, res) => {
               
           }
       );
+    const species = animalData.map((animal)=>
+      animal.species
+    )
+    species.sort();
+    const uniquespecies = [...new Set([...species])]
       const breeds = animalData.map((animal)=>
         animal.breed
       )
@@ -62,6 +67,7 @@ router.get('/search', async (req, res) => {
 
       res.render('search', { 
         animalData, 
+        uniquespecies,
         uniquegenders,
         uniqueages,
         uniquesizes,
@@ -118,6 +124,8 @@ router.get('/results', async (req, res) => {
         }
         console.log(where);
         const animalData = await Animal.findAll({where,raw: true});
+
+        res.render('results', {})
         // res.json({species: req.query.species, breed: req.query.breed});
         
       // if(req.query.species && req.query.breed){

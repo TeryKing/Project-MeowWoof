@@ -14,20 +14,23 @@
       <div class="card">
     <article class="card-group-item">
       <header class="card-header">
-        <h6 class="title">Species</h6>
+        <h6 class="title">Pet Type</h6>
       </header>
       <div class="filter-content">
         <div class="card-body">
         <form>
-        <label class="form-check">
-            {{#each uniquespecies as |species|}}
-          <input class="form-check-input" type="checkbox" name="species={{species}}" id='species'>
-          <span class="form-check-label">
-            {{species}}
+          <label class="form-check">
+            <input class="form-check-input" name="species=dog" type="checkbox" id='dog'>
+            <span class="form-check-label">
+              Dog
             </span>
-            <br>
-            {{/each}}
-        </label> <!-- form-check.// -->
+          </label> <!-- form-check.// -->
+          <label class="form-check">
+            <input class="form-check-input" name="species=cat"type="checkbox" id='cat'>
+            <span class="form-check-label">
+              Cat
+            </span>
+          </label>  <!-- form-check.// -->
         </form>
 
     </article> <!-- card-group-item.// -->
@@ -46,6 +49,8 @@
             </span>
             <br>
             {{/each}}
+{{!-- copy this ^ to age gender size --}}
+
         </label>
         </div>
       </div>
@@ -114,7 +119,7 @@
 </aside>
 </section>
 <main>
-  {{>animalcard}}
+  {{!-- {{>filteredanimalcard}} not actual--}}
     {{body}}
 
 </main>
@@ -125,3 +130,5 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </html>
+
+{{!-- THIS IS JUST A COPY FOR SEARCH. --}}

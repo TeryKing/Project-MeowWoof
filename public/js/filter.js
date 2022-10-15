@@ -1,18 +1,22 @@
 
-    const species = document.querySelector('#species').checked;
-    const gender = document.querySelector('#gender').checked;
-    const breed = document.querySelector('#breed').checked;
-    const age = document.querySelector('#age').checked;
-    const size = document.querySelector('#size').checked;
-checkedarrays = [];
+    // const species = document.querySelector('#species').checked;
+    // const gender = document.querySelector('#gender').checked;
+    // const breed = document.querySelector('#breed').checked;
+    // const age = document.querySelector('#age').checked;
+    // const size = document.querySelector('#size').checked;
+    // var element = document.querySelectorAll();\
 
+
+checkedarrays = [];
+console.log("hello1")
 function filterclick(value, checked){
-    if(checked == true){
-        checkedarrays.push(value);
+    for(i=0; i>checkedarrays.length; i++){
+        if(element[i].checked === true){
+            checkedarrays.push(element[i].name)
+        }
     }
-    else if(checked !== -1){
-        checkedarrays.splice
-    }
+    console.log("hello")
+
 }
 
 const result = async(event) => {
@@ -27,7 +31,7 @@ const result = async(event) => {
 
 document
 .querySelector('#applyfilter')
-.addEventListener('button', filterResults);
+.addEventListener('click', console.log("button pressed"));
 
 
 // Assign names to your checkboxes
