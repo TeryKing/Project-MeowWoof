@@ -1,11 +1,12 @@
- <div class="container">
-    <img class="card-img-top" src="..." alt="Resident" />
-    <div class="card-body">
-      <h5 class="card-title">{{pet_name}}</h5>
-      <p class="card-text">{{species}}<br />
-        Breed:{{cat_breed}}<br />
-        Age:{{pet_age}}<br />
-        Gender:{{pet_gender}}<br />
-        Size{{pet_size}}</p>
-    </div>
-  </div>
+<div class="container">
+  <img
+    class="mb-3 w-64 h-64 full shadow-lg"
+    src="/public/images/CAT.jpg"
+    alt="{{animal.name}}"
+  />
+  <h5 class="mb-1 text-xl font-medium text-gray-900">{{animal.name}}</h5>
+  <p class="text-sm text-gray-500">{{animal.breed}}</p>
+  <p class="text-sm text-gray-500">{{animal.size}}</p>
+  <p class="text-sm text-gray-500">{{animal.gender}}</p>
+  <p class="text-sm text-gray-500">{{animal.age}}</p>
+</div>

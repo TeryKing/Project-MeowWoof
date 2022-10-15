@@ -1,61 +1,113 @@
- <section class="">
-        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-            <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900">
-            </a>
-            <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
-                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                    <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-                        Pet Surrender Form
-                    </h1>
-                    <form class="space-y-4 md:space-y-6" action="#">
-                        <div>
-                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Pet Name</label>
-                            <input type="text" name="Name" id="name"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-pink-600 focus:border-pink-600 block w-full p-2.5"
-                                placeholder="Fluffy" required="">
-                        </div>
-                        <div>
-                            <label for="species" class="block mb-2 text-sm font-medium text-gray-900">Species</label>
-                            <select id="species" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5">
-                                <option value="dog">Dog</option>
-                                <option value="cat">Cat</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="Breed" class="block mb-2 text-sm font-medium text-gray-900">Breed</label>
-                            <input type="text" name="breed" id="breed"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-pink-600 focus:border-pink-600 block w-full p-2.5"
-                                placeholder="German Shepard, Domestic Short Hair, Unknown, etc" required="">
-                        </div>
-                        <div>
-                            <label for="Age" class="block mb-2 text-sm font-medium text-gray-900">Age</label>
-                            <input type="number" name="age" id="age"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-pink-600 focus:border-pink-600 block w-full p-2.5"
-                                placeholder="" required="">
-                        </div>
-                        <div>
-                            <label for="gender" class="block mb-2 text-sm font-medium text-gray-900">Gender</label>
-                            <select id="gender" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5">
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                            </select>
-                        </div>
-                        <div>
-                        
-                            <label for="size" class="block mb-2 text-sm font-medium text-gray-900">Size</label>
-                            <select id="size" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5">
-                                <option value="small">Small (Less than 10 lbs) </option>
-                                <option value="medium">Medium (10 - 30lbs) </option>
-                                <option value="large">Large (larger than 30 lbs) </option>
-                            </select>
+<section class="">
+  <div
+    class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"
+  >
+    <a
+      href="#"
+      class="flex items-center mb-6 text-2xl font-semibold text-gray-900"
+    >
+    </a>
+    <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
+      <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+        <h1
+          class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl"
+        >
+          Pet Surrender Form
+        </h1>
+        <form class="space-y-4 md:space-y-6" action="#">
+          <div>
+            <label
+              for="name"
+              class="block mb-2 text-sm font-medium text-gray-900"
+            >Pet Name</label>
+            <input
+              type="text"
+              id="petname"
+              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-pink-600 focus:border-pink-600 block w-full p-2.5"
+              placeholder="Fluffy"
+              required=""
+            />
+          </div>
+          <div>
+            <label
+              for="species"
+              class="block mb-2 text-sm font-medium text-gray-900"
+            >Species</label>
+            <select
+              id="species"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5"
+            >
+              <option value="dog">Dog</option>
+              <option value="cat">Cat</option>
+            </select>
+          </div>
+          <div>
+            <label
+              for="Breed"
+              class="block mb-2 text-sm font-medium text-gray-900"
+            >Breed</label>
+            <input
+              type="text"
+              name="breed"
+              id="breed"
+              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-pink-600 focus:border-pink-600 block w-full p-2.5"
+              placeholder="German Shepard, Domestic Short Hair, Unknown, etc"
+              required=""
+            />
+          </div>
+          <div>
+            <label
+              for="Age"
+              class="block mb-2 text-sm font-medium text-gray-900"
+            >Age</label>
+            <input
+              type="number"
+              name="age"
+              id="age"
+              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-pink-600 focus:border-pink-600 block w-full p-2.5"
+              placeholder=""
+              required=""
+            />
+          </div>
+          <div>
+            <label
+              for="gender"
+              class="block mb-2 text-sm font-medium text-gray-900"
+            >Gender</label>
+            <select
+              id="gender"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5"
+            >
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+          <div>
 
-                        </div>
-                        
-                        <button type="submit" id="surrender-form" class="w-full text-white bg-pink-600 hover:bg-pink-700 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Submit</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+            <label
+              for="size"
+              class="block mb-2 text-sm font-medium text-gray-900"
+            >Size</label>
+            <select
+              id="size"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5"
+            >
+              <option value="small">Small (Less than 10 lbs) </option>
+              <option value="medium">Medium (10 - 30lbs) </option>
+              <option value="large">Large (larger than 30 lbs) </option>
+            </select>
+
+          </div>
+
+          <button
+            type="submit"
+            id="surrender-submit"
+            class="w-full text-white bg-pink-600 hover:bg-pink-700 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+          >Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 
 <script src="./js/surrender.js"></script>
