@@ -10,8 +10,8 @@
   <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
 </head>
 
-<section>
-      <div class="card">
+<section class="row" id="filter">
+      <div class=" col-3 card">
     <article class="card-group-item">
       <header class="card-header">
         <h6 class="title">Pet Type</h6>
@@ -20,13 +20,13 @@
         <div class="card-body">
         <form>
           <label class="form-check">
-            <input class="form-check-input" name="species=dog" type="checkbox" id='dog'>
+            <input onclick="filterClick(this.value, this.checked)" class="form-check-input" name="species=dog" type="checkbox" id='dog' value="dog">
             <span class="form-check-label">
               Dog
             </span>
           </label> <!-- form-check.// -->
           <label class="form-check">
-            <input class="form-check-input" name="species=cat"type="checkbox" id='cat'>
+            <input onclick="filterClick(this.value, this.checked)" class="form-check-input" name="species=cat" type="checkbox" id='cat' value="cat">
             <span class="form-check-label">
               Cat
             </span>
@@ -43,7 +43,7 @@
         <div class="card-body">
         <label class="form-check">
             {{#each uniquebreeds as |breed|}}
-          <input class="form-check-input" type="checkbox" name="breed={{breed}}" id='breed'>
+          <input onclick="filterClick(this.value, this.checked)" class="form-check-input" type="checkbox" name="breed={{breed}}" id='breed' value="{{breed}}">
           <span class="form-check-label">
             {{breed}}
             </span>
@@ -63,7 +63,7 @@
         <div class="card-body">
         <label class="form-check">
             {{#each uniquegenders as |gender|}}
-          <input class="form-check-input" type="checkbox" name="gender={{gender}}" id='gender'>
+          <input onclick="filterClick(this.value, this.checked)" class="form-check-input" type="checkbox" name="gender={{gender}}" id='gender' value="{{gender}}">
           <span class="form-check-label">
           {{gender}}
           </span>
@@ -82,7 +82,7 @@
         <div class="card-body">
         <label class="form-check">
             {{#each uniqueages as |age|}}
-          <input class="form-check-input" type="checkbox" name="age={{age}}" id='age'>
+          <input onclick="filterClick(this.value, this.checked)" class="form-check-input" type="checkbox" name="age={{age}}" id='age' value="{{age}}">
           <span class="form-check-label">
             {{age}}
           </span>
@@ -101,7 +101,7 @@
         <div class="card-body">
         <label class="form-check">
             {{#each uniquesizes as |size|}}
-          <input class="form-check-input" type="checkbox" name="size={{size}}" id='size'>
+          <input onclick="filterClick(this.value, this.checked)" class="form-check-input" type="checkbox" name="size={{size}}" id='size' value="{{size}}">
           <span class="form-check-label">
             {{size}}
           </span>
@@ -113,17 +113,21 @@
       </div>
     </article>
     <div class="input-group">
-  <button type="button" class="btn btn-outline-primary" id="applyfilter">Apply</button>
+  <button type="submit" class="btn btn-outline-primary" id="applyfilter">Apply</button>
 </div>
-  </div>
-</section>
-<main>
-    {{card}}
+  </div> 
+  <main class="col-9">
+   {{!-- {{#each animalcard as |animal|}} --}}
+        {{>animalcard}}
+        
+    {{!-- {{/each}} --}}
+  
     {{body}}
+    </main>
+</section>
 
-</main>
-
-<script src="/js/filter.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="../js/filter.js"></script>
 <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
