@@ -106,6 +106,7 @@ router.get('/animal/:animal_id',  async (req, res) => {
 
 
 // add middleware
+//will add checkAuth middleware when we dont have to hard code session id
 router.get('/dashboard/',  async (req, res) => {
   try {
       // Find the logged in user based on the session ID
@@ -116,6 +117,7 @@ router.get('/dashboard/',  async (req, res) => {
       const assignedAnimals = await Animal.findAll({
         where: {
           assigned_volunteer: "8c464600-4b61-11ed-a035-51544ac70a62"
+          //this will change back to req.session.id 
         },
         raw: true
       }
