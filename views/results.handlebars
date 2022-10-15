@@ -9,25 +9,28 @@
   <link rel="stylesheet" type="text/css" href="/css/style.css">
   <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
 </head>
-
-<section class="row" id="filter">
-      <div class=" col-3 card">
+<section class ="row">
+<aside class='col-md'>
+      <div class="card">
     <article class="card-group-item">
       <header class="card-header">
-        <h6 class="title">Species</h6>
+        <h6 class="title">Pet Type</h6>
       </header>
       <div class="filter-content">
         <div class="card-body">
         <form>
-        <label class="form-check">
-            {{#each uniquespecies as |species|}}
-          <input class="form-check-input" type="checkbox" name="species={{species}}" id='species'>
-          <span class="form-check-label">
-            {{species}}
+          <label class="form-check">
+            <input class="form-check-input" name="species=dog" type="checkbox" id='dog'>
+            <span class="form-check-label">
+              Dog
             </span>
-            <br>
-            {{/each}}
-        </label> <!-- form-check.// -->
+          </label> <!-- form-check.// -->
+          <label class="form-check">
+            <input class="form-check-input" name="species=cat"type="checkbox" id='cat'>
+            <span class="form-check-label">
+              Cat
+            </span>
+          </label>  <!-- form-check.// -->
         </form>
 
     </article> <!-- card-group-item.// -->
@@ -40,12 +43,14 @@
         <div class="card-body">
         <label class="form-check">
             {{#each uniquebreeds as |breed|}}
-          <input onclick="filterClick(this.value, this.checked)" class="form-check-input" type="checkbox" name="breed={{breed}}" id='breed' value="{{breed}}">
+          <input class="form-check-input" type="checkbox" name="breed={{breed}}" id='breed'>
           <span class="form-check-label">
             {{breed}}
             </span>
             <br>
             {{/each}}
+{{!-- copy this ^ to age gender size --}}
+
         </label>
         </div>
       </div>
@@ -58,7 +63,7 @@
         <div class="card-body">
         <label class="form-check">
             {{#each uniquegenders as |gender|}}
-          <input onclick="filterClick(this.value, this.checked)" class="form-check-input" type="checkbox" name="gender={{gender}}" id='gender' value="{{gender}}">
+          <input class="form-check-input" type="checkbox" name="gender={{gender}}" id='gender'>
           <span class="form-check-label">
           {{gender}}
           </span>
@@ -77,7 +82,7 @@
         <div class="card-body">
         <label class="form-check">
             {{#each uniqueages as |age|}}
-          <input onclick="filterClick(this.value, this.checked)" class="form-check-input" type="checkbox" name="age={{age}}" id='age' value="{{age}}">
+          <input class="form-check-input" type="checkbox" name="age={{age}}" id='age'>
           <span class="form-check-label">
             {{age}}
           </span>
@@ -96,7 +101,7 @@
         <div class="card-body">
         <label class="form-check">
             {{#each uniquesizes as |size|}}
-          <input onclick="filterClick(this.value, this.checked)" class="form-check-input" type="checkbox" name="size={{size}}" id='size' value="{{size}}">
+          <input class="form-check-input" type="checkbox" name="size={{size}}" id='size'>
           <span class="form-check-label">
             {{size}}
           </span>
@@ -110,21 +115,20 @@
     <div class="input-group">
   <button type="submit" class="btn btn-outline-primary" id="applyfilter">Apply</button>
 </div>
-  </div> 
-  <main class="col-9">
-   {{!-- {{#each animalcard as |animal|}} --}}
-        {{>animalcard}}
-        
-    {{!-- {{/each}} --}}
-  
-    {{body}}
-    </main>
+  </div>
+</aside>
 </section>
+<main>
+  {{!-- {{>filteredanimalcard}} not actual--}}
+    {{body}}
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</main>
+
 <script src="../js/filter.js"></script>
 <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </html>
+
+{{!-- THIS IS JUST A COPY FOR SEARCH. --}}
