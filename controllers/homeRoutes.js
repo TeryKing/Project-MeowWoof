@@ -21,6 +21,7 @@ router.get('/', async (req, res) => {
 
     res.render('homepage', {
       randomAnimal,
+      animalData,
       logged_in: req.session.logged_in
     });
   } catch (err) {

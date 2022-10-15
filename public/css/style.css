@@ -2,12 +2,6 @@ header {
   margin-top: 50px;
 }
 
-body {
-  /* background-image: url("/images/wallpaper.jpg");
-  background-size: 100%; */
-
-}
-
 nav {
   display: block;
 }
@@ -22,23 +16,27 @@ nav {
 }
 
 #siteTitleBannerText {
-    font-family: 'Ribeye', cursive;
-    font-size: 5rem;
+  font-family: "Ribeye", cursive;
+  font-size: 5rem;
 }
 #siteSubheaderBannerText {
-  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 2rem;
 }
 
+#petSpotlight {
+  border: solid 5px grey;
+}
+
 .siteBannerText {
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    font-size: 1.5rem;
-    font-weight: bold;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .siteBannerTextAlternate {
-  color:rgb(0, 0, 0);
-  font-family:Georgia, 'Times New Roman', Times, serif;
+  color: rgb(0, 0, 0);
+  font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 1.25rem;
   font-weight: bold;
 }
@@ -46,8 +44,9 @@ nav {
 .pageBrakes {
   border: solid 3px black;
 }
+
 footer {
-  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 1rem;
   font-weight: bold;
 }
