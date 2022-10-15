@@ -62,14 +62,14 @@ router.get('/search', async (req, res) => {
     sizes.sort()
     const uniquesizes = [...new Set([...sizes])]
 
-    res.render('search', {
-      animalData,
-      uniquegenders,
-      uniqueages,
-      uniquesizes,
-      uniquebreeds,
-      logged_in: req.session.logged_in
-    });
+      res.render('search', { 
+        animalData, 
+        uniquebreeds,
+        uniquegenders,
+        uniqueages,
+        uniquesizes,
+        logged_in: req.session.logged_in   
+      });
 
 
 
@@ -124,38 +124,38 @@ router.get('/results', async (req, res) => {
 
     // if(req.query.species && req.query.breed){
     //   const animalData = await Animal.findAll(
-    //     {   
+    //     {
     //         where: {
     //           species: req.query.species,
     //           breed: req.query.breed
-    //           //add 
+    //           //add
 
     //         }
     //     })
     // }
     // else if(req.query.species){
     //   const animalData = await Animal.findAll(
-    //     {   
+    //     {
     //         where: {
     //           species: req.query.species,
-    //           //add 
+    //           //add
 
     //         }
     //     })
     // }
     // else if(req.query.breed){
     //   const animalData = await Animal.findAll(
-    //     {   
+    //     {
     //         where: {
     //           breed: req.query.breed
-    //           //add 
+    //           //add
     //         }
     //     })
     // }
     res.json({ animalData })
-    // res.render('filter', { 
-    //   animalData, 
-    //   logged_in: req.session.logged_in   
+    // res.render('filter', {
+    //   animalData,
+    //   logged_in: req.session.logged_in
     // });
 
   } catch (err) {
@@ -225,7 +225,7 @@ router.get('/dashboard', async (req, res) => {
       }
     })
     // const assignedAnimals = assignedAnimalsData.map((assignedAnimal) => assignedAnimal.get({ plain: true }));
-   // cant map (loop) through something that is empty. might have to make array first then push onto it after you try and assign the animal 
+   // cant map (loop) through something that is empty. might have to make array first then push onto it after you try and assign the animal
     const unassignedCats = unassignedCatsData.map((cat) => cat.get({ plain: true }));
     const unassignedDogs = unassignedDogsData.map((dog) => dog.get({ plain: true }));
     // const user = userData.map((user) => user.get({ plain: true }));

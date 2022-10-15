@@ -63,7 +63,7 @@
         <div class="card-body">
         <label class="form-check">
             {{#each uniquegenders as |gender|}}
-          <input onclick="filterClick(this.value, this.checked)" class="form-check-input" type="checkbox" name="gender={{gender}}" id='gender'>
+          <input onclick="filterClick(this.value, this.checked)" class="form-check-input" type="checkbox" name="gender={{gender}}" id='gender' value="{{gender}}">
           <span class="form-check-label">
           {{gender}}
           </span>
@@ -82,7 +82,7 @@
         <div class="card-body">
         <label class="form-check">
             {{#each uniqueages as |age|}}
-          <input onclick="filterClick(this.value, this.checked)" class="form-check-input" type="checkbox" name="age={{age}}" id='age'>
+          <input onclick="filterClick(this.value, this.checked)" class="form-check-input" type="checkbox" name="age={{age}}" id='age' value="{{age}}">
           <span class="form-check-label">
             {{age}}
           </span>
@@ -101,7 +101,7 @@
         <div class="card-body">
         <label class="form-check">
             {{#each uniquesizes as |size|}}
-          <input onclick="filterClick(this.value, this.checked)" class="form-check-input" type="checkbox" name="size={{size}}" id='size'>
+          <input onclick="filterClick(this.value, this.checked)" class="form-check-input" type="checkbox" name="size={{size}}" id='size' value="{{size}}">
           <span class="form-check-label">
             {{size}}
           </span>
@@ -113,7 +113,7 @@
       </div>
     </article>
     <div class="input-group">
-  <button onclick="result(search)" type="submit" class="btn btn-outline-primary" id="applyfilter">Apply</button>
+  <button type="submit" class="btn btn-outline-primary" id="applyfilter">Apply</button>
 </div>
   </div> 
   <main class="col-9">
