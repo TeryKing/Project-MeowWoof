@@ -7,6 +7,7 @@ const surrenderFormHandler = async (event) => {
   const age = document.querySelector("#age").value;
   const gender = document.querySelector("#gender").value;
   const size = document.querySelector("#size").value;
+  const image = "https://cdn.vanderbilt.edu/vu-wp0/wp-content/uploads/sites/288/2019/03/28062611/Image-Coming-Soon-Placeholder-1-300x300.png";
 
   if (name && species && breed && age && gender && size) {
     const response = await fetch("/api/animal", {
@@ -18,6 +19,7 @@ const surrenderFormHandler = async (event) => {
         breed,
         age,
         size,
+        image,
       }),
       headers: { "Content-Type": "application/json" },
     });
