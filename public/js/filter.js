@@ -30,12 +30,10 @@ console.log("3", checkedarrays)
 const result = async(event) => {
     event.preventDefault();
     console.log("check2")
-    const search = new URL("/results")
-    await fetch(URL,
+    // const search = new URL("/results")
+    await fetch("/results",
         {
             method: GET,
-        
-     
         })
         // search
     console.log("done")

@@ -153,10 +153,10 @@ router.get('/results', async (req, res) => {
     //     })
     // }
     res.json({ animalData })
-    // res.render('filter', {
-    //   animalData,
-    //   logged_in: req.session.logged_in
-    // });
+    res.render('results', {
+      animalData,
+      logged_in: req.session.logged_in
+    });
 
   } catch (err) {
     console.log(err);
