@@ -12,11 +12,6 @@ nav {
   display: block;
 }
 
-#logout-button:hover {
-  font-weight: bolder;
-  color: rgb(219 39 119);
-}
-
 .card {
   max-width: 20%;
 }
