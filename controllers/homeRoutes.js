@@ -198,20 +198,6 @@ router.get('/animal/:animal_id', async (req, res) => {
 //       res.status(200).json(userData);
 //     })
 
-
-router.get('/test', async (req, res) => {
-  const unassignedDogsData = await Animal.findAll({
-    where: {
-      species: 'Dog',
-      assigned_volunteer: null
-    }
-  })
-
-  const unassignedDogs = unassignedDogsData.map((dog) => dog.get({ plain: true }));
-
-  res.render('test', {unassignedDogs });
-
-})
 // add middleware
 router.get('/dashboard', async (req, res) => {
   try {
