@@ -62,10 +62,10 @@ router.get('/search', async (req, res) => {
 
       res.render('search', { 
         animalData, 
+        uniquebreeds,
         uniquegenders,
         uniqueages,
         uniquesizes,
-        uniquebreeds,
         logged_in: req.session.logged_in   
       });
 
