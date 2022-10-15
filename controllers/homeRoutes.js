@@ -11,15 +11,15 @@ router.get('/',  async (req, res) => {
     const animalData = await Animal.findAll(
         {   raw: true,
             nest: true,
-            attributes: { exclude: ['animal_id', 'arrival_date', 'assigned_volunteer', 'createdAt', 'updatedAt'] }
         }
     );
 
     const randomAnimal = animalData[Math.floor(Math.random() * animalData.length)];
-    console.log(randomAnimal)
+    console.log(randomAnimal);
     
     res.render('homepage', { 
-      randomAnimal, 
+      randomAnimal,
+      animalData, 
       logged_in: req.session.logged_in   
     });
   } catch (err) {
