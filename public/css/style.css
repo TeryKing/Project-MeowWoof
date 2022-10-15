@@ -12,11 +12,6 @@ nav {
   display: block;
 }
 
-#logout-button:hover {
-  font-weight: bolder;
-  color: rgb(219 39 119);
-}
-
 .card {
   max-width: 20%;
 }
@@ -49,7 +44,6 @@ nav {
 }
 
 .pageBrakes {
-  background-color: rgb(255, 254, 213);
   border: solid 3px black;
 }
 footer {
