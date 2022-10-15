@@ -7,14 +7,6 @@ const signupFormHandler = async (event) => {
   const password = document.querySelector("#password-signup").value.trim();
   const is_volunteer = document.querySelector("#volunteer-signup").value;
 
-  // const adopt = document.querySelector('#adopt-signup'); -- might not be needed since adopt data is not in our user model
-
-  // if (volunteer.checked) {
-  //   is_volunteer.value == true;
-  // } else {
-  //   is_volunteer.value == false;
-  // };
-
   if (first_name && last_name && email && password) {
     const response = await fetch("/api/user", {
       method: "POST",
