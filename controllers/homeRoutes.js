@@ -40,13 +40,37 @@ router.get('/search', async (req, res) => {
       const breeds = animalData.map((animal)=>
         animal.breed
       )
+      breeds.sort();
       const uniquebreeds = [...new Set([...breeds])]
+        
+      const genders = animalData.map((animal)=>
+      animal.gender
+    ) 
+    const uniquegenders = [...new Set([...genders])]
+
+      const ages = animalData.map((animal)=>
+          animal.age
+      )
+      ages.sort()
+      const uniqueages = [...new Set([...ages])]
+
+      const sizes = animalData.map((animal)=>
+          animal.size
+      )
+      sizes.sort()
+      const uniquesizes = [...new Set([...sizes])]
+
       res.render('search', { 
         animalData, 
+        uniquegenders,
+        uniqueages,
+        uniquesizes,
         uniquebreeds,
         logged_in: req.session.logged_in   
       });
-        
+
+
+
     } catch (err) {
       console.log(err);
         res.status(500).json(err);

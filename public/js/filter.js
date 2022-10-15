@@ -28,3 +28,13 @@ const result = async(event) => {
 document
 .querySelector('#applyfilter')
 .addEventListener('button', filterResults);
+
+
+// Assign names to your checkboxes
+// give them all the same class
+// var elemt = document.querySlectorALL() => array of element
+// foor loop on the array
+// element[i].checked === true
+//  checkedarrays.push(`element[i].name`) => ["species=dog", "breed=clumber"]
+// let url = `/results?checkedarrays.join("&&")`
+// documnet.location.rplace(url)
