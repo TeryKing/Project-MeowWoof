@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
     }
   });
 
-//user logins
+//User login authentication
 router.post('/login', async (req, res) => {
 
   try {
@@ -53,7 +53,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
-//user logs out
+//User logout function
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
