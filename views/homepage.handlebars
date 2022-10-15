@@ -11,8 +11,7 @@
 <section class="img-fluid">
   <img
     src="/images/homepage_banner_.jpg"
-    class=""
-    alt=""
+    alt="Group of adorable dogs and cats"
     id="homeBanner"
   />
 </section>
@@ -31,16 +30,28 @@
 <section class="container-xl text-center">
   <div class="">
     <h2 class="siteBannerText pageBrakes py-5">
-      Resident Spotlight: {{animal.name}}!
+      Resident Spotlight: {{randomAnimal.name}}!
     </h2>
   </div>
 </section>
 
-<section>
-  <div class="row d-flex justify-content-around py-5">
-    <div>
-      {{> homepageAnimalCard}}
-    </div>
+<section class="text-gray-600 body-font">
+  <div class="w-full bg-white rounded-lg border border-gray-200 shadow-md hover:border-pink-600">
+    <div class="flex flex-col items-center pb-10 pt-10">
+          <img class="mb-3 w-50 h-50 full shadow-lg" id="petSpotlight" src="{{randomAnimal.image}}" alt="{{randomAnimal.name}}">
+          <h5 class="mb-1 text-xl font-medium text-gray-900">{{randomAnimal.name}}</h5>
+          <p class="text-lg text-gray-500">Breed: {{randomAnimal.breed}}</p>
+          <p class="text-lg text-gray-500">Gender: {{randomAnimal.gender}}</p>
+          <p class="text-lg text-gray-500">Age: {{randomAnimal.age}}</p>
+          <p class="text-lg text-gray-500">Size: {{randomAnimal.size}}</p>
+          <div class="flex mt-4 space-x-3 md:mt-6">
+              {{#if loggedIn}}
+              <a href="/email" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-pink-700 rounded-lg hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300">Adopt me! &#9829; Message a volunteer</a>
+              {{else}}
+              <a href="/login" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-pink-700 rounded-lg hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300">Interested? Log in to adopt</a>
+              {{/if}}
+          </div>
+  </div>
 </section>
 
 <section class="container-xl text-center">
@@ -68,7 +79,7 @@
     <div>
       {{>homepageAnimalCard}}
     </div>
-  </div>
+  </div> --}}
 </section>
 
 <section class="container-xl text-center">

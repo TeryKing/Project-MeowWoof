@@ -21,6 +21,7 @@ router.get('/', async (req, res) => {
 
     res.render('homepage', {
       randomAnimal,
+      animalData,
       logged_in: req.session.logged_in
     });
   } catch (err) {
@@ -33,19 +34,24 @@ router.get('/', async (req, res) => {
 router.get('/search', async (req, res) => {
   try {
     const animalData = await Animal.findAll(
-      {
-        raw: true,
-        nest: true,
-
-      }
-    );
-    const breeds = animalData.map((animal) =>
-      animal.breed
+          {   raw: true,
+              nest: true,
+              
+          }
+      );
+    const species = animalData.map((animal)=>
+      animal.species
     )
-    breeds.sort();
-    const uniquebreeds = [...new Set([...breeds])]
+    species.sort();
+    const uniquespecies = [...new Set([...species])]
 
-    const genders = animalData.map((animal) =>
+      const breeds = animalData.map((animal)=>
+        animal.breed
+      )
+      breeds.sort();
+      const uniquebreeds = [...new Set([...breeds])]
+        
+      const genders = animalData.map((animal)=>
       animal.gender
     )
     const uniquegenders = [...new Set([...genders])]
@@ -64,6 +70,7 @@ router.get('/search', async (req, res) => {
 
       res.render('search', { 
         animalData, 
+        uniquespecies,
         uniquebreeds,
         uniquegenders,
         uniqueages,
@@ -83,30 +90,6 @@ router.get('/search', async (req, res) => {
 //Needs work
 router.get('/results', async (req, res) => {
   try {
-    // const filterResults = async (event) =>
-    // event.preventDefault();
-
-    // document.querySelector('#dog').addEventListener('checkbox',filterResults);
-    // document.querySelector('#cat').addEventListener('checkbox',filterResults);
-    // const species = document.querySelector('#species').value;
-
-    // const dog
-    // const gender = document.querySelector('#gender').value;
-    // const breed = document.querySelector('#breed').value.trim();
-    // const age = document.querySelector('#age').value;
-    // const size = document.querySelector('#size').value;
-
-    // if (species) {
-    //   const response = await fetch('/results', {
-    //     method: 'GET',
-
-    //   });
-    // }
-
-    // document
-    //   .querySelector('#applyfilter')
-    //   .addEventListener('button', filterResults);
-
     console.log(req.query.species)
     console.log(req.query.breed)
     console.log("yeet", req.query)
