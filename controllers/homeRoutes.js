@@ -210,19 +210,21 @@ router.get('/dashboard/:user_id', async (req, res) => {
     res.status(500).json(err);
   }
 })
+
 // add middleware/
 router.get('/dashboard', async (req, res) => {
   try {
     // Find the logged in user based on the session ID
-    const userData = await User.findByPk("8c464600-4b61-11ed-a035-51544ac70a62", {
+    const userData = await User.findByPk(req.params.user_id, {
       attributes: { exclude: ['password'] }
     });
-    const assignedAnimalsData = await Animal.findAll({
-      where: {
-        assigned_volunteer: "8c464600-4b61-11ed-a035-51544ac70a62"
-      },
-    }
-    )
+    // const assignedAnimalsData = await Animal.findAll({
+    //   where: {
+    //     assigned_volunteer: userData.user_id
+    //   },
+    // }
+    // )
+    // before the volunteer selects any animals, the userData.user_id is null. You get this error:  Cannot read properties of null (reading 'user_id')
     const unassignedCatsData = await Animal.findAll({
       where: {
         species: 'Cat',
@@ -244,7 +246,7 @@ router.get('/dashboard', async (req, res) => {
     // const unassignedCats = unassignedCatsData.map((cat) => cat.get({ plain: true }));
 
     // res.status(200).json(userData);
-    //must be commented out until we have the routes and handlebars working
+
     res.render('volunteer', {
       // assignedAnimal: assignedAnimals,
       // user: user,
@@ -257,6 +259,26 @@ router.get('/dashboard', async (req, res) => {
     res.status(500).json(err);
   }
 });
+//updating the assigned pets user ID, should happen on submit form in dashboard.js or on unassign from your care.
+// router.put('/dashboard/',  async (req, res) => {
+//   try {
+//       const updateAnimal = await Animal.update(
+//           {
+//             assigned_volunteer: req.body.assigned_volunteer,
+//           },
+//           {
+//             where: {
+//               animal_id: req.params.animal_id,
+//             },
+//           }
+//         );
+//       //comment out for now to see if routes work
+//       //   return res.json(updateAnimal);
+//     res.status(200).json(updateAnimal);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// })
 
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
