@@ -193,7 +193,24 @@ router.get('/animal/:animal_id', async (req, res) => {
 //       res.status(200).json(userData);
 //     })
 
-// add middleware
+router.get('/dashboard/:user_id', async (req, res) => {
+  try {
+    const userData = await User.findByPk(req.params.user_id, {
+      attributes: { exclude: ['password'] }
+    });
+
+    const assignedAnimalsData = await Animal.findAll({
+      where: {
+        assigned_volunteer: userData.user_id
+      },
+    }
+    )
+    res.status(200).json(assignedAnimalsData)
+  } catch{
+    res.status(500).json(err);
+  }
+})
+// add middleware/
 router.get('/dashboard', async (req, res) => {
   try {
     // Find the logged in user based on the session ID
