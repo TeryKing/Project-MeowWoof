@@ -20,6 +20,20 @@ console.log("3", checkedarrays)
 
 }
 
+//trying a click function to test.
+
+// function applyClick(){
+//     var element = document.querySelectorAll()
+//     for(i=0; i>element.length; i++){
+//         if(element[i].checked === true){
+//             checkedarrays.push(`element[i].name`)
+//             let url = '/results?checkedarrays.join("&&")'
+//             document.location.replace(url);
+//         }
+//     }
+
+// } 
+
 
 const result = async(event) => {
     event.preventDefault();
@@ -32,6 +46,7 @@ const result = async(event) => {
         // search
     console.log("done")
     filterClick(checkedarrays);
+    
 }
 
 // document
