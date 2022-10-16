@@ -6,7 +6,7 @@ let filterSquares = document.querySelectorAll(
 
 // console.log("check1")
 
-function filterClick(value, checked){
+function filterClick(value, checked, name){
     // console.log("@@@")
     if(checked == true){
         checkedarrays.push(value);
@@ -22,39 +22,45 @@ console.log("3", checkedarrays)
 
 //trying a click function to test.
 
-// function applyClick(){
+
+
+// function result(){
 //     var element = document.querySelectorAll()
 //     for(i=0; i>element.length; i++){
 //         if(element[i].checked === true){
-//             checkedarrays.push(`element[i].name`)
-//             let url = '/results?checkedarrays.join("&&")'
+//             checkedarrays.push(`${element[i].name}`)
+//             let url = `/results?${checkedarrays.join("&&")}`
 //             document.location.replace(url);
 //         }
 //     }
+    
+// }
 
-// } 
 
 
 const result = async(event) => {
     event.preventDefault();
-    console.log("check2")
-    // const search = new URL("/results")
-    await fetch("/results",
-        {
-            method: GET,
-        })
-        // search
-    console.log("done")
-    filterClick(checkedarrays);
-    
+    var element = document.querySelectorAll(".form-check-input")
+    function element(){
+    for(i=0; i>checkedarrays.length; i++){
+        if(element[i].checked === true){
+            checkedarrays.push(`${element[i].value}`)
+            let url = `/results?${checkedarrays.join("&&")}`
+            document.location.replace(url);
+            console.log("yo")
+        }
+    }
+    console.log("yeet")
+
+    }
+    console.log("helloworld")
 }
 
-// document
-// .querySelector('#applyfilter')
-// .addEventListener('submit', result);
 document
-.querySelector('.filter')
-.addEventListener('submit', filterClick);
+.querySelector("#applyfilter")
+.addEventListener('click', result);
+
+
 
 
 // Assign names to your checkboxes

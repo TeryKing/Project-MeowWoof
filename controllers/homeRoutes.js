@@ -211,7 +211,7 @@ router.get('/dashboard/:user_id', async (req, res) => {
   }
 })
 // add middleware/
-router.get('/dashboard', async (req, res) => {
+router.get('/dashboard/:user_id', async (req, res) => {
       // Find the logged in user based on the session ID
       const userData = await User.findAll(
         {
@@ -223,43 +223,44 @@ router.get('/dashboard', async (req, res) => {
     })
 
 // add middleware
-router.get('/dashboard/:user_id', async (req, res) => {
+router.get('/dashboard', async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.params.user_id, {
       attributes: { exclude: ['password'] }
     });
-    const assignedAnimalsData = await Animal.findAll({
+    // const assignedAnimalsData = await Animal.findAll({
 
-      where: {
-        assigned_volunteer: userData.user_id
-      },
-    }
-    )
-    // const unassignedCatsData = await Animal.findAll({
     //   where: {
-    //     species: 'Cat',
-    //     assigned_volunteer: null
+    //     assigned_volunteer: userData.user_id
     //   },
     // }
     // )
-    // const unassignedDogsData = await Animal.findAll({
-    //   where: {
-    //     species: 'Dog',
-    //     assigned_volunteer: null
-    //   }
-    // })
+    
+    const unassignedCatsData = await Animal.findAll({
+      where: {
+        species: 'Cat',
+        assigned_volunteer: null
+      },
+    }
+    )
+    const unassignedDogsData = await Animal.findAll({
+      where: {
+        species: 'Dog',
+        assigned_volunteer: null
+      }
+    })
     // const assignedAnimals = assignedAnimalsData.map((assignedAnimal) => assignedAnimal.get({ plain: true }));
    // cant map (loop) through something that is empty. might have to make array first then push onto it after you try and assign the animal
-    // const unassignedCats = unassignedCatsData.map((cat) => cat.get({ plain: true }));
-    // const unassignedDogs = unassignedDogsData.map((dog) => dog.get({ plain: true }));
+    const unassignedCats = unassignedCatsData.map((cat) => cat.get({ plain: true }));
+    const unassignedDogs = unassignedDogsData.map((dog) => dog.get({ plain: true }));
     // const user = userData.map((user) => user.get({ plain: true }));
     // const unassignedCats = unassignedCatsData.map((cat) => cat.get({ plain: true }));
 
     // res.status(200).json(assignedAnimalsData);
     //must be commented out until we have the routes and handlebars working
     res.render('volunteer', {
-      assignedAnimalsData,
+      // assignedAnimalsData,
       dogs: unassignedDogs,
       cats: unassignedCats,
       logged_in: true
