@@ -1,19 +1,13 @@
-// console.log("dog123")
-    // const species = document.querySelector('#species').checked;
-    // const gender = document.querySelector('#gender').checked;
-    // const breed = document.querySelector('#breed').checked;
-    // const age = document.querySelector('#age').checked;
-    // const size = document.querySelector('#size').checked;
 let checkedarrays = [];
 let filterAside = $('#filter');
 let filterbx = $('#filter input[type="checkbox"]');
 let filterSquares = document.querySelectorAll(
     '#filter input[type="checkbox"]');
 
-// console.log("check1")
+console.log("check1")
 
 function filterClick(value, checked){
-    // console.log("@@@")
+    console.log("@@@")
     if(checked == true){
         checkedarrays.push(value);
         console.log("1", checkedarrays)
@@ -41,8 +35,8 @@ const result = async(event) => {
 }
 
 // document
-// .querySelector('.filter')
-// .addEventListener('submit', filterClick);
+// .querySelector('#applyfilter')
+// .addEventListener('submit', result);
 
 
 // Assign names to your checkboxes
