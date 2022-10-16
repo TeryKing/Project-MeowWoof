@@ -42,9 +42,9 @@ const result = async(event) => {
     filterClick(checkedarrays);
 }
 
-// document
-// .querySelector('.filter')
-// .addEventListener('submit', filterClick);
+document
+.querySelector('.filter')
+.addEventListener('submit', filterClick);
 
 
 // Assign names to your checkboxes
