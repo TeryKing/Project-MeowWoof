@@ -19,8 +19,20 @@ router.get('/', async (req, res) => {
     const randomAnimal = animalData[Math.floor(Math.random() * animalData.length)];
     console.log(randomAnimal)
 
+    const residentOne = animalData[Math.floor(Math.random() * animalData.length)];
+    console.log(randomAnimal)
+
+    const residentTwo = animalData[Math.floor(Math.random() * animalData.length)];
+    console.log(randomAnimal)
+
+    const residentThree = animalData[Math.floor(Math.random() * animalData.length)];
+    console.log(randomAnimal)
+
     res.render('homepage', {
       randomAnimal,
+      residentOne,
+      residentTwo,
+      residentThree,
       animalData,
       logged_in: req.session.logged_in
     });
@@ -105,6 +117,36 @@ router.get('/results', async (req, res) => {
     const animalData = await Animal.findAll({ where, raw: true });
     // res.json({species: req.query.species, breed: req.query.breed});
 
+    // if(req.query.species && req.query.breed){
+    //   const animalData = await Animal.findAll(
+    //     {
+    //         where: {
+    //           species: req.query.species,
+    //           breed: req.query.breed
+    //           //add
+
+    //         }
+    //     })
+    // }
+    // else if(req.query.species){
+    //   const animalData = await Animal.findAll(
+    //     {
+    //         where: {
+    //           species: req.query.species,
+    //           //add
+
+    //         }
+    //     })
+    // }
+    // else if(req.query.breed){
+    //   const animalData = await Animal.findAll(
+    //     {
+    //         where: {
+    //           breed: req.query.breed
+    //           //add
+    //         }
+    //     })
+    // }
     res.json({ animalData })
     res.render('results', {
       animalData,
@@ -139,10 +181,40 @@ router.get('/animal/:animal_id', async (req, res) => {
   }
 })
 
+//doesn't serve any purpose aside from showing all users
+// router.get('/dashboard', checkAuth, async (req, res) => {
+//       // Find the logged in user based on the session ID
+//       const userData = await User.findAll(
+//         {
+//           raw: true,
+//           nest: true,
+//         })
+
+//       res.status(200).json(userData);
+//     })
+
+router.get('/dashboard/:user_id', async (req, res) => {
+  try {
+    const userData = await User.findByPk(req.params.user_id, {
+      attributes: { exclude: ['password'] }
+    });
+
+    const assignedAnimalsData = await Animal.findAll({
+      where: {
+        assigned_volunteer: userData.user_id
+      },
+    }
+    )
+    res.status(200).json(assignedAnimalsData)
+  } catch{
+    res.status(500).json(err);
+  }
+})
+// add middleware/
 router.get('/dashboard', async (req, res) => {
       // Find the logged in user based on the session ID
       const userData = await User.findAll(
-        {   
+        {
           raw: true,
           nest: true,
         })
@@ -158,7 +230,7 @@ router.get('/dashboard/:user_id', async (req, res) => {
       attributes: { exclude: ['password'] }
     });
     const assignedAnimalsData = await Animal.findAll({
-      
+
       where: {
         assigned_volunteer: userData.user_id
       },

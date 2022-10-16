@@ -4,10 +4,10 @@ let filterbx = $('#filter input[type="checkbox"]');
 let filterSquares = document.querySelectorAll(
     '#filter input[type="checkbox"]');
 
-console.log("check1")
+// console.log("check1")
 
 function filterClick(value, checked){
-    console.log("@@@")
+    // console.log("@@@")
     if(checked == true){
         checkedarrays.push(value);
         console.log("1", checkedarrays)
@@ -37,6 +37,9 @@ const result = async(event) => {
 // document
 // .querySelector('#applyfilter')
 // .addEventListener('submit', result);
+document
+.querySelector('.filter')
+.addEventListener('submit', filterClick);
 
 
 // Assign names to your checkboxes
