@@ -50,7 +50,7 @@ router.post('/',async (req, res) => {
   });
 
 //updates animal info
-router.put('/:animal_id', checkAuth, async (req, res) => {
+router.put('/:animal_id', async (req, res) => {
     try {
         const updateAnimal = await Animal.update(
             {
