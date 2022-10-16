@@ -106,14 +106,14 @@ router.get('/results', async (req, res) => {
     console.log(req.query.breed)
     console.log("yeet", req.query)
     const where = {
-      ...(req.query.breed && { breed: req.query.breed }),
       ...(req.query.species && { species: req.query.species }),
-      ...(req.query.age && { age: req.query.age }),
+      ...(req.query.breed && { breed: req.query.breed }),
       ...(req.query.gender && { gender: req.query.gender }),
+      ...(req.query.age && { age: req.query.age }),
       ...(req.query.size && { size: req.query.size })
 
     }
-    console.log(where);
+    // console.log(where);
     const animalData = await Animal.findAll({ where, raw: true });
     // res.json({species: req.query.species, breed: req.query.breed});
 
@@ -148,10 +148,10 @@ router.get('/results', async (req, res) => {
     //     })
     // }
     res.json({ animalData })
-    // res.render('filter', {
-    //   animalData,
-    //   logged_in: req.session.logged_in
-    // });
+    res.render('results', {
+      animalData,
+      logged_in: req.session.logged_in
+    });
 
   } catch (err) {
     console.log(err);
@@ -185,7 +185,7 @@ router.get('/animal/:animal_id', async (req, res) => {
 // router.get('/dashboard', checkAuth, async (req, res) => {
 //       // Find the logged in user based on the session ID
 //       const userData = await User.findAll(
-//         {   
+//         {
 //           raw: true,
 //           nest: true,
 //         })
@@ -213,43 +213,58 @@ router.get('/dashboard/:user_id', async (req, res) => {
 
 // add middleware/
 router.get('/dashboard', async (req, res) => {
+      // Find the logged in user based on the session ID
+      const userData = await User.findAll(
+        {
+          raw: true,
+          nest: true,
+        })
+
+      res.status(200).json(userData);
+    })
+
+// add middleware
+router.get('/dashboard/:user_id', async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.params.user_id, {
       attributes: { exclude: ['password'] }
     });
-    // const assignedAnimalsData = await Animal.findAll({
-    //   where: {
-    //     assigned_volunteer: userData.user_id
-    //   },
-    // }
-    // )
-    // before the volunteer selects any animals, the userData.user_id is null. You get this error:  Cannot read properties of null (reading 'user_id')
-    const unassignedCatsData = await Animal.findAll({
+
+    const assignedAnimalsData = await Animal.findAll({
+
       where: {
-        species: 'Cat',
-        assigned_volunteer: null
+        assigned_volunteer: userData.user_id
+
       },
     }
     )
-    const unassignedDogsData = await Animal.findAll({
-      where: {
-        species: 'Dog',
-        assigned_volunteer: null
-      }
-    })
+    // const unassignedCatsData = await Animal.findAll({
+    //   where: {
+    //     species: 'Cat',
+    //     assigned_volunteer: null
+    //   },
+    // }
+    // )
+    // const unassignedDogsData = await Animal.findAll({
+    //   where: {
+    //     species: 'Dog',
+    //     assigned_volunteer: null
+    //   }
+    // })
     // const assignedAnimals = assignedAnimalsData.map((assignedAnimal) => assignedAnimal.get({ plain: true }));
    // cant map (loop) through something that is empty. might have to make array first then push onto it after you try and assign the animal
-    const unassignedCats = unassignedCatsData.map((cat) => cat.get({ plain: true }));
-    const unassignedDogs = unassignedDogsData.map((dog) => dog.get({ plain: true }));
+    // const unassignedCats = unassignedCatsData.map((cat) => cat.get({ plain: true }));
+    // const unassignedDogs = unassignedDogsData.map((dog) => dog.get({ plain: true }));
     // const user = userData.map((user) => user.get({ plain: true }));
     // const unassignedCats = unassignedCatsData.map((cat) => cat.get({ plain: true }));
 
-    // res.status(200).json(userData);
+
+    // res.status(200).json(assignedAnimalsData);
+    //must be commented out until we have the routes and handlebars working
 
     res.render('volunteer', {
-      // assignedAnimal: assignedAnimals,
-      // user: user,
+      assignedAnimalsData,
       dogs: unassignedDogs,
       cats: unassignedCats,
       logged_in: true
