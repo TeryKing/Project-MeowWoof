@@ -16,7 +16,7 @@ function filterClick(value, checked, name){
         checkedarrays.splice(checked, 1)
         console.log("2", checkedarrays)
     }
-    
+
 // console.log("3", url)
 // console.log("3", ele.value)
 // console.log("3", ele.checked)
@@ -33,13 +33,13 @@ const result = async() => {
             method: 'GET',
         })
     console.log("done")
-    
+
     if (response.ok) {
         document.location.replace(url);
       } else {
         alert('Failed to filter animals');
       }
-   
+
 }
 
 // document
