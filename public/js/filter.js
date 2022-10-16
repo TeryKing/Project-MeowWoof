@@ -1,66 +1,54 @@
 let checkedarrays = [];
-let filterAside = $('#filter');
-let filterbx = $('#filter input[type="checkbox"]');
-let filterSquares = document.querySelectorAll(
-    '#filter input[type="checkbox"]');
+
 
 // console.log("check1")
 
 function filterClick(value, checked, name){
-    // console.log("@@@")
+    console.log(value)
+    console.log(checked)
+    console.log(name)
+
     if(checked == true){
-        checkedarrays.push(value);
+        checkedarrays.push(name);
         console.log("1", checkedarrays)
     }
     else if(checked !== -1){
         checkedarrays.splice(checked, 1)
         console.log("2", checkedarrays)
     }
-console.log("3", checkedarrays)
+
+// console.log("3", url)
+// console.log("3", ele.value)
+// console.log("3", ele.checked)
+}
+
+
+const result = async() => {
+    // event.preventDefault();
+    console.log("check2")
+    // const search = new URL("/results")
+    let url = `/results?${checkedarrays.join('&')}`
+    const response = await fetch(url,
+        {
+            method: 'GET',
+        })
+    console.log("done")
+
+    if (response.ok) {
+        document.location.replace(url);
+      } else {
+        alert('Failed to filter animals');
+      }
 
 }
 
-//trying a click function to test.
+// document
+//     .querySelector('#applyfilter')
+//     .addEventListener('submit', result);
 
-
-
-// function result(){
-//     var element = document.querySelectorAll()
-//     for(i=0; i>element.length; i++){
-//         if(element[i].checked === true){
-//             checkedarrays.push(`${element[i].name}`)
-//             let url = `/results?${checkedarrays.join("&&")}`
-//             document.location.replace(url);
-//         }
-//     }
-    
-// }
-
-
-
-const result = async(event) => {
-    event.preventDefault();
-    var element = document.querySelectorAll(".form-check-input")
-    function element(){
-    for(i=0; i>checkedarrays.length; i++){
-        if(element[i].checked === true){
-            checkedarrays.push(`${element[i].value}`)
-            let url = `/results?${checkedarrays.join("&&")}`
-            document.location.replace(url);
-            console.log("yo")
-        }
-    }
-    console.log("yeet")
-
-    }
-    console.log("helloworld")
-}
-
-document
-.querySelector("#applyfilter")
-.addEventListener('click', result);
-
-
+// document
+//     .querySelector('.filter')
+//     .addEventListener('submit', filterClick);
 
 
 // Assign names to your checkboxes

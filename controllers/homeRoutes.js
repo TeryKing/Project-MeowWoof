@@ -114,7 +114,7 @@ router.get('/results', async (req, res) => {
 
     }
     // console.log(where);
-    const animalData = await Animal.findAll({ where, raw: true });
+    const animalData = await Animal.findAll({ raw: true, where });
     // res.json({species: req.query.species, breed: req.query.breed});
 
     // if(req.query.species && req.query.breed){
@@ -147,7 +147,7 @@ router.get('/results', async (req, res) => {
     //         }
     //     })
     // }
-    res.json({ animalData })
+    // res.json({ animalData })
     res.render('results', {
       animalData,
       logged_in: req.session.logged_in
@@ -169,7 +169,7 @@ router.get('/animal/:animal_id', async (req, res) => {
         nest: true,
       }
     );
-    res.status(200).json(animalID);
+    // res.status(200).json(animalID);
     //must be commented out until we have the routes and handlebars working
     res.render('animal', {
       animal,
@@ -210,6 +210,7 @@ router.get('/dashboard/:user_id', async (req, res) => {
     res.status(500).json(err);
   }
 })
+
 // add middleware/
 router.get('/dashboard/:user_id', async (req, res) => {
       // Find the logged in user based on the session ID
@@ -229,8 +230,16 @@ router.get('/dashboard', async (req, res) => {
     const userData = await User.findByPk(req.params.user_id, {
       attributes: { exclude: ['password'] }
     });
-    // const assignedAnimalsData = await Animal.findAll({
 
+    const assignedAnimalsData = await Animal.findAll({
+
+      where: {
+        assigned_volunteer: userData.user_id
+
+      },
+    }
+    )
+    // const unassignedCatsData = await Animal.findAll({
     //   where: {
     //     assigned_volunteer: userData.user_id
     //   },
@@ -257,8 +266,10 @@ router.get('/dashboard', async (req, res) => {
     // const user = userData.map((user) => user.get({ plain: true }));
     // const unassignedCats = unassignedCatsData.map((cat) => cat.get({ plain: true }));
 
+
     // res.status(200).json(assignedAnimalsData);
     //must be commented out until we have the routes and handlebars working
+
     res.render('volunteer', {
       // assignedAnimalsData,
       dogs: unassignedDogs,
@@ -270,6 +281,26 @@ router.get('/dashboard', async (req, res) => {
     res.status(500).json(err);
   }
 });
+//updating the assigned pets user ID, should happen on submit form in dashboard.js or on unassign from your care.
+// router.put('/dashboard/',  async (req, res) => {
+//   try {
+//       const updateAnimal = await Animal.update(
+//           {
+//             assigned_volunteer: req.body.assigned_volunteer,
+//           },
+//           {
+//             where: {
+//               animal_id: req.params.animal_id,
+//             },
+//           }
+//         );
+//       //comment out for now to see if routes work
+//       //   return res.json(updateAnimal);
+//     res.status(200).json(updateAnimal);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// })
 
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
