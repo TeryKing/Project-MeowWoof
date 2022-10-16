@@ -114,7 +114,7 @@ router.get('/results', async (req, res) => {
 
     }
     // console.log(where);
-    const animalData = await Animal.findAll({ where, raw: true });
+    const animalData = await Animal.findAll({ raw: true, where });
     // res.json({species: req.query.species, breed: req.query.breed});
 
     // if(req.query.species && req.query.breed){
@@ -147,7 +147,7 @@ router.get('/results', async (req, res) => {
     //         }
     //     })
     // }
-    res.json({ animalData })
+    // res.json({ animalData })
     res.render('results', {
       animalData,
       logged_in: req.session.logged_in
@@ -169,7 +169,7 @@ router.get('/animal/:animal_id', async (req, res) => {
         nest: true,
       }
     );
-    res.status(200).json(animalID);
+    // res.status(200).json(animalID);
     //must be commented out until we have the routes and handlebars working
     res.render('animal', {
       animal,
