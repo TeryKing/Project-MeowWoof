@@ -231,14 +231,15 @@ router.get('/dashboard', async (req, res) => {
       attributes: { exclude: ['password'] }
     });
 
-    const assignedAnimalsData = await Animal.findAll({
+    // const assignedAnimalsData = await Animal.findAll({
 
-      where: {
-        assigned_volunteer: userData.user_id
+    //   where: {
+    //     assigned_volunteer: userData.user_id
 
-      },
-    }
-    )
+    //   },
+    // }
+    // )
+
     // const unassignedCatsData = await Animal.findAll({
     //   where: {
     //     assigned_volunteer: userData.user_id
@@ -305,7 +306,7 @@ router.get('/dashboard', async (req, res) => {
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.redirect('/animal');
+    res.redirect('/'); //needs single targeted filter
     return;
   }
 
