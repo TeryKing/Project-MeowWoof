@@ -13,7 +13,8 @@ router.post('/', async (req, res) => {
       });
   console.log(req.body)
       req.session.save(() => {
-        req.session.loggedIn = true;
+        req.session.logged_in = true;
+        req.session.is_volunteer = findUser.is_volunteer;
         console.log(req.session)
   
         res.status(200).json(newUserData);
