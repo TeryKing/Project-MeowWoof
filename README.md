@@ -12,7 +12,7 @@ This application is designed to help with pet shelters of any size. The major fu
 6. When the user is on the search page, they are given a range of criteria to filter the animals by so that they can view and potentially adopt them. 
 
 ## Screenshot of Application
-![Screenshot](.png)
+![Screenshot](./homepagegif.gif)
 
 ## Deployed Application
 Click [here](https://) for MeowWoof's live URL.

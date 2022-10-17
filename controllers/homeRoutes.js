@@ -113,41 +113,9 @@ router.get('/results', async (req, res) => {
       ...(req.query.size && { size: req.query.size })
 
     }
-    // console.log(where);
+
     const animalData = await Animal.findAll({ raw: true, where });
-    // res.json({species: req.query.species, breed: req.query.breed});
 
-    // if(req.query.species && req.query.breed){
-    //   const animalData = await Animal.findAll(
-    //     {
-    //         where: {
-    //           species: req.query.species,
-    //           breed: req.query.breed
-    //           //add
-
-    //         }
-    //     })
-    // }
-    // else if(req.query.species){
-    //   const animalData = await Animal.findAll(
-    //     {
-    //         where: {
-    //           species: req.query.species,
-    //           //add
-
-    //         }
-    //     })
-    // }
-    // else if(req.query.breed){
-    //   const animalData = await Animal.findAll(
-    //     {
-    //         where: {
-    //           breed: req.query.breed
-    //           //add
-    //         }
-    //     })
-    // }
-    // res.json({ animalData })
     res.render('results', {
       animalData,
       logged_in: req.session.logged_in
@@ -260,6 +228,8 @@ router.get('/dashboard', async (req, res) => {
         assigned_volunteer: null
       }
     })
+
+ 
     // const assignedAnimals = assignedAnimalsData.map((assignedAnimal) => assignedAnimal.get({ plain: true }));
    // cant map (loop) through something that is empty. might have to make array first then push onto it after you try and assign the animal
     const unassignedCats = unassignedCatsData.map((cat) => cat.get({ plain: true }));
@@ -271,10 +241,31 @@ router.get('/dashboard', async (req, res) => {
     // res.status(200).json(assignedAnimalsData);
     //must be commented out until we have the routes and handlebars working
 
+    //Terry's attempt
+    const unassignedPets = await Animal.findAll({
+      where:{
+          assigned_volunteer: null
+      }
+    })
+
+    const animalData = await Animal.findAll(
+      {   raw: true,
+          nest: true,
+          
+      }
+  );
+    const name = animalData.map((animal) =>
+      animal.name
+    )
+    name.sort()
+      console.log(unassignedPets)
     res.render('volunteer', {
       // assignedAnimalsData,
-      dogs: unassignedDogs,
-      cats: unassignedCats,
+      name,
+      // unassignedPets,
+      //terry's attempt finish
+      // dogs: unassignedDogs,
+      // cats: unassignedCats,
       logged_in: true
     });
   } catch (err) {

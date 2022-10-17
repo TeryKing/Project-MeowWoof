@@ -29,8 +29,32 @@
     {{/each}} --}}
 </main>
 <aside>
-
-    <form>
+<section class="flex flex-row ">
+      <div class=" col-3 card">
+    <article class="card-group-item">
+      <header class="card-header">
+        <h6 class="title">Unassigned Pets</h6>
+      </header>
+      <div class="filter-content">
+        <div class="card-body">
+        <form>
+        <label class="form-check">
+            {{#each name as |name|}}
+            {{!-- {{#if unassignedPets as |unassignedPets| how to make this if arguement with null}} --}}
+          <input onclick="filterClick(this.value, this.checked, this.name)" class="form-check-input" type="checkbox" name="name={{name}}" id='name'>
+          <span class="form-check-label">
+            {{name}}
+            </span>
+            <br>
+            {{!-- {{/if}} --}}
+            {{/each}}
+        </label> <!-- form-check.// -->
+        </form>
+        </article>
+        </div>
+        </section>
+      <input id= "submit" type="submit" value="submit">
+    {{!-- <form>
     <h3>Cats</h3>
     {{#each cats}}
       <input type="checkbox" id="{{this.name}}" name="{{this.name}}" value="{{this.name}}">
@@ -43,9 +67,31 @@
       <label for=""{{this.name}}""> {{this.name}}</label><br>
     {{/each}}
       <input id= "submit" type="submit" value="submit">
-    </form>
+    </form> --}}
 
 </aside>
+
+<section>
+  {{#if assignedAnimal}}
+  <div class="w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:border-pink-600">
+    <div class="flex flex-col items-center pb-10 pt-10">
+        <img class="mb-3 w-64 h-64 full shadow-lg" src="{{animal.image}}" alt="{{animal.name}}">
+        <h5 class="mb-1 text-xl font-medium text-gray-900">{{animal.name}}</h5>
+        <p class="text-sm text-gray-500">{{animal.breed}}</p>
+        <p class="text-sm text-gray-500">{{animal.size}}</p>
+        <p class="text-sm text-gray-500">{{animal.gender}}</p>
+        <p class="text-sm text-gray-500">{{animal.age}} years</p>
+            <div class="flex mt-4 space-x-3 md:mt-6">
+                {{!-- {{#if logged_in}}
+                <a href="/email" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-pink-700 rounded-lg hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300">Adopt me! &#9829; Message a volunteer</a>
+                {{else}}
+                <a href="/login" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-pink-700 rounded-lg hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300">Interested? Log in to adopt</a>
+                {{/if}} --}}
+            </div>
+    </div>
+</div>
+{{/if}}
+</section>
 
 
 <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
