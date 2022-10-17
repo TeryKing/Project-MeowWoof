@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
 </head>
 
-<section class="row ">
+<section class="flex flex-row ">
       <div class=" col-3 card">
     <article class="card-group-item">
       <header class="card-header">
@@ -108,21 +108,25 @@
       </div>
     </article>
     <div class="input-group">
-  <button onclick="result()" type="click" class="btn btn-outline-primary" id="applyfilter">Apply</button>
-</div>
-  </div> 
-  <main class="col-9">
-    <div class="flex flex-col text-center w-full mb-20">
-        <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">ADOPTABLE PETS</h1>
+      <button onclick="result()" type="click" class="btn btn-outline-primary" id="applyfilter">Apply</button>
     </div>
-   {{#each animalData as |animal|}}
+</div>
 
-        {{>animalcard animal=animal}}
-        
-    {{/each}}
-  
-   </main>
+
+  <main class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="flex flex-col text-center w-full mb-20">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Adoptable Pets</h1>
+      </div>
+      <div class="flex flex-wrap m-6">
+        {{#each animalData as |animal|}}
+        {{>animalcard animal=animal}} 
+        {{/each}}
+      </div>
+    </div>
+  </main>
 </section>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="../js/filter.js"></script>
 <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
