@@ -34,7 +34,8 @@ router.get('/', async (req, res) => {
       residentTwo,
       residentThree,
       animalData,
-      logged_in: req.session.logged_in
+      logged_in: req.session.logged_in,
+      volunteer: req.session.is_volunteer
     });
   } catch (err) {
     res.status(500).json(err);
@@ -87,7 +88,8 @@ router.get('/search', async (req, res) => {
         uniquegenders,
         uniqueages,
         uniquesizes,
-        logged_in: req.session.logged_in   
+        logged_in: req.session.logged_in,
+        volunteer: req.session.is_volunteer   
       });
 
 
@@ -150,7 +152,8 @@ router.get('/results', async (req, res) => {
     // res.json({ animalData })
     res.render('results', {
       animalData,
-      logged_in: req.session.logged_in
+      logged_in: req.session.logged_in,
+      volunteer: req.session.is_volunteer
     });
 
   } catch (err) {
@@ -173,7 +176,8 @@ router.get('/animal/:animal_id', async (req, res) => {
     //must be commented out until we have the routes and handlebars working
     res.render('animal', {
       animal,
-      logged_in: req.session.logged_in
+      logged_in: req.session.logged_in,
+      volunteer: req.session.is_volunteer
     });
 
   } catch (err) {
@@ -226,7 +230,8 @@ router.get('/dashboard', async (req, res) => {
       ...user,
       unassignedAnimalsData,
       assignedAnimalsData,
-      logged_in: true
+      logged_in: true,
+      volunteer: req.session.is_volunteer
     });
   } catch (err) {
     res.status(500).json(err);
@@ -340,7 +345,10 @@ router.get('/signup', (req, res) => {
 // add middleware
 router.get('/surrender', async (req, res) => {
   try {
-    res.render('surrender', {logged_in: req.session.logged_in});
+    res.render('surrender', {
+      logged_in: req.session.logged_in, 
+      volunteer: req.session.is_volunteer
+    });
   } catch (err) {
     res.status(500).json(err);
   }
