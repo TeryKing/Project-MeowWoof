@@ -340,7 +340,7 @@ router.get('/signup', (req, res) => {
 // add middleware
 router.get('/surrender', async (req, res) => {
   try {
-    res.render('surrender');
+    res.render('surrender', {logged_in: req.session.logged_in});
   } catch (err) {
     res.status(500).json(err);
   }
