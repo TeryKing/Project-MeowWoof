@@ -34,7 +34,8 @@ router.get('/', async (req, res) => {
       residentTwo,
       residentThree,
       animalData,
-      logged_in: req.session.logged_in
+      logged_in: req.session.logged_in,
+      volunteer: req.session.is_volunteer
     });
   } catch (err) {
     res.status(500).json(err);
@@ -79,15 +80,21 @@ router.get('/search', async (req, res) => {
     )
     sizes.sort()
     const uniquesizes = [...new Set([...sizes])]
-
+          console.log({ 
+            logged_in: req.session.logged_in,
+            volunteer: req.session.is_volunteer   
+          })
       res.render('search', { 
-        animalData, 
+        animalData: animalData.map((it)=>{
+          return {...it,logged_in:req.session.logged_in}
+        }), 
         uniquespecies,
         uniquebreeds,
         uniquegenders,
         uniqueages,
         uniquesizes,
-        logged_in: req.session.logged_in   
+        logged_in: req.session.logged_in,
+        volunteer: req.session.is_volunteer   
       });
 
 
@@ -118,7 +125,8 @@ router.get('/results', async (req, res) => {
 
     res.render('results', {
       animalData,
-      logged_in: req.session.logged_in
+      logged_in: req.session.logged_in,
+      volunteer: req.session.is_volunteer
     });
 
   } catch (err) {
@@ -141,10 +149,11 @@ router.get('/animal/:animal_id', async (req, res) => {
     //must be commented out until we have the routes and handlebars working
     res.render('animal', {
       animal,
-      logged_in: req.session.logged_in
+      logged_in: req.session.logged_in,
+      volunteer: req.session.is_volunteer
     });
 
-  } catch {
+  } catch (err) {
     res.status(500).json(err);
   }
 })
@@ -161,120 +170,110 @@ router.get('/animal/:animal_id', async (req, res) => {
 //       res.status(200).json(userData);
 //     })
 
-router.get('/dashboard/:user_id', async (req, res) => {
+//GOAL:display animals that assign to the volunteer and gets all unassigned animals
+router.get('/dashboard', async (req, res) => {
   try {
-    const userData = await User.findByPk(req.params.user_id, {
+    const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] }
     });
+
+    const user = userData.get({ plain: true });
 
     const assignedAnimalsData = await Animal.findAll({
       where: {
         assigned_volunteer: userData.user_id
       },
-    }
-    )
-    res.status(200).json(assignedAnimalsData)
-  } catch{
+      raw: true
+    })
+
+    const unassignedAnimalsData = await Animal.findAll({
+      where: {
+        assigned_volunteer: null
+      },
+      raw: true
+    })
+
+    // const listUnassignedAnimals = unassignedAnimalsData.map((animal) =>
+    // animal.name);
+    // console.log(unassignedAnimalsData)
+    
+    // res.status(200).json(unassignedAnimalsData);
+
+    res.render('volunteer', {
+      ...user,
+      unassignedAnimalsData,
+      assignedAnimalsData,
+      logged_in: true,
+      volunteer: req.session.is_volunteer
+    });
+  } catch (err) {
     res.status(500).json(err);
   }
 })
 
-// add middleware/
-router.get('/dashboard/:user_id', async (req, res) => {
-      // Find the logged in user based on the session ID
-      const userData = await User.findAll(
-        {
-          raw: true,
-          nest: true,
-        })
-
-      res.status(200).json(userData);
-    })
 
 // add middleware
-router.get('/dashboard', async (req, res) => {
-  try {
-    // Find the logged in user based on the session ID
-    const userData = await User.findByPk(req.params.user_id, {
-      attributes: { exclude: ['password'] }
-    });
+// router.get('/dashboard', async (req, res) => {
+//   try {
+//     // Find the logged in user based on the session ID
+//     const userData = await User.findByPk(req.params.user_id, {
+//       attributes: { exclude: ['password'] }
+//     });
 
-    // const assignedAnimalsData = await Animal.findAll({
+//     // const assignedAnimalsData = await Animal.findAll({
 
-    //   where: {
-    //     assigned_volunteer: userData.user_id
+//     //   where: {
+//     //     assigned_volunteer: userData.user_id
 
-    //   },
-    // }
-    // )
+//     //   },
+//     // }
+//     // )
 
-    // const unassignedCatsData = await Animal.findAll({
-    //   where: {
-    //     assigned_volunteer: userData.user_id
-    //   },
-    // }
-    // )
+//     // const unassignedCatsData = await Animal.findAll({
+//     //   where: {
+//     //     assigned_volunteer: userData.user_id
+//     //   },
+//     // }
+//     // )
     
-    const unassignedCatsData = await Animal.findAll({
-      where: {
-        species: 'Cat',
-        assigned_volunteer: null
-      },
-    }
-    )
-    const unassignedDogsData = await Animal.findAll({
-      where: {
-        species: 'Dog',
-        assigned_volunteer: null
-      }
-    })
-
- 
-    // const assignedAnimals = assignedAnimalsData.map((assignedAnimal) => assignedAnimal.get({ plain: true }));
-   // cant map (loop) through something that is empty. might have to make array first then push onto it after you try and assign the animal
-    const unassignedCats = unassignedCatsData.map((cat) => cat.get({ plain: true }));
-    const unassignedDogs = unassignedDogsData.map((dog) => dog.get({ plain: true }));
-    // const user = userData.map((user) => user.get({ plain: true }));
-    // const unassignedCats = unassignedCatsData.map((cat) => cat.get({ plain: true }));
+//     const unassignedCatsData = await Animal.findAll({
+//       where: {
+//         species: 'Cat',
+//         assigned_volunteer: null
+//       },
+//     }
+//     )
+//     const unassignedDogsData = await Animal.findAll({
+//       where: {
+//         species: 'Dog',
+//         assigned_volunteer: null
+//       }
+//     })
+//     // const assignedAnimals = assignedAnimalsData.map((assignedAnimal) => assignedAnimal.get({ plain: true }));
+//    // cant map (loop) through something that is empty. might have to make array first then push onto it after you try and assign the animal
+//     const unassignedCats = unassignedCatsData.map((cat) => cat.get({ plain: true }));
+//     const unassignedDogs = unassignedDogsData.map((dog) => dog.get({ plain: true }));
+//     // const user = userData.map((user) => user.get({ plain: true }));
+//     // const unassignedCats = unassignedCatsData.map((cat) => cat.get({ plain: true }));
 
 
-    // res.status(200).json(assignedAnimalsData);
-    //must be commented out until we have the routes and handlebars working
+//     // res.status(200).json(assignedAnimalsData);
+//     //must be commented out until we have the routes and handlebars working
 
-    //Terry's attempt
-    const unassignedPets = await Animal.findAll({
-      where:{
-          assigned_volunteer: null
-      }
-    })
+//     res.render('volunteer', {
+//       // assignedAnimalsData,
+//       dogs: unassignedDogs,
+//       cats: unassignedCats,
+//       logged_in: true
+//     });
+//   } catch (err) {
+//     console.log('err',err)
+//     res.status(500).json(err);
+//   }
+// });
 
-    const animalData = await Animal.findAll(
-      {   raw: true,
-          nest: true,
-          
-      }
-  );
-    const name = animalData.map((animal) =>
-      animal.name
-    )
-    name.sort()
-      console.log(unassignedPets)
-    res.render('volunteer', {
-      // assignedAnimalsData,
-      name,
-      // unassignedPets,
-      //terry's attempt finish
-      // dogs: unassignedDogs,
-      // cats: unassignedCats,
-      logged_in: true
-    });
-  } catch (err) {
-    console.log('err',err)
-    res.status(500).json(err);
-  }
-});
 //updating the assigned pets user ID, should happen on submit form in dashboard.js or on unassign from your care.
-// router.put('/dashboard/',  async (req, res) => {
+// router.put('/dashboard',  async (req, res) => {
 //   try {
 //       const updateAnimal = await Animal.update(
 //           {
@@ -319,7 +318,10 @@ router.get('/signup', (req, res) => {
 // add middleware
 router.get('/surrender', async (req, res) => {
   try {
-    res.render('surrender');
+    res.render('surrender', {
+      logged_in: req.session.logged_in, 
+      volunteer: req.session.is_volunteer
+    });
   } catch (err) {
     res.status(500).json(err);
   }

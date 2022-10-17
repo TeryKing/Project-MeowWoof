@@ -42,7 +42,7 @@
           <h5 class="mb-1 text-xl font-medium text-gray-900">{{randomAnimal.name}}</h5>
           <p class="text-lg text-gray-500">Breed: {{randomAnimal.breed}}</p>
           <p class="text-lg text-gray-500">Gender: {{randomAnimal.gender}}</p>
-          <p class="text-lg text-gray-500">Age: {{randomAnimal.age}}</p>
+          <p class="text-lg text-gray-500">Age: {{randomAnimal.age}} year(s)</p>
           <p class="text-lg text-gray-500">Size: {{randomAnimal.size}}</p>
           <div class="flex mt-4 space-x-3 md:mt-6">
               {{#if logged_in}}
@@ -65,15 +65,15 @@
 <section>
   <div class="row d-flex justify-content-around py-5">
     <div>
-      {{>homepageAnimalCard residentOne}}
+      {{>homepageAnimalCard residentOne loggedIn=logged_in}}
     </div>
     
     <div>
-      {{>homepageAnimalCard residentTwo}}
+      {{>homepageAnimalCard residentTwo loggedIn=logged_in}}
     </div>
 
     <div>
-      {{>homepageAnimalCard residentThree}}
+      {{>homepageAnimalCard residentThree loggedIn=logged_in}}
     </div>
   </div>
 </section>
