@@ -3,24 +3,14 @@ const { Animal } = require('../../models');
 const checkAuth = require('../../utils/checkAuth');
 
 //Add animal when the pet is getting surrender
-//add middleware
 router.post('/',async (req, res) => {
     try {
-    // console.log("checkpoint 1")
 
       const newAnimal = await Animal.create({
       ...req.body,
-        // user_id: req.session.user_id,
-        
-      // ...console.log(req.body)
   
       });
-      // console.log("checkpoint 2")
-  
-      // res.render('dashboard', {
-      //   newAnimal,
-      //   logged_in: req.session.logged_in
-      // });
+
       res.status(200).json(newAnimal);
     } catch (err) {
       res.status(500).json(err);
@@ -28,13 +18,11 @@ router.post('/',async (req, res) => {
   });
   
   //delete animal when its adopted => press adopted btn (it will remove the animal from the db)
-  //add middleware
   router.delete('/:animal_id', async (req, res) => {
     try {
       const animalData = await Animal.destroy({
         where: {
           animal_id: req.params.animal_id,
-          // user_id: req.session.user_id,
         },
       });
   
@@ -72,9 +60,6 @@ router.put('/:animal_id/current_user', async (req, res) => {
           },
         }
       );
-  // console.log("volunteerId", volunteerId)
-
-  // console.log("updatedAnimal", updateAnimal)
 
     
     res.status(200).json(updateAnimal);
@@ -103,9 +88,7 @@ router.put('/:animal_id', async (req, res) => {
               },
             }
           );
-      // console.log("volunteerId", volunteerId)
 
-      // console.log("updatedAnimal", updateAnimal)
 
         
       res.status(200).json(updateAnimal);
