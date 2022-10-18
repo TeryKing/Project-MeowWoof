@@ -43,6 +43,7 @@ User.init(
     },
     is_volunteer: {
       type: DataTypes.BOOLEAN,
+      allowNull: true,
     },
     // assigned_pet: {
     //   type: DataTypes.INTEGER,
