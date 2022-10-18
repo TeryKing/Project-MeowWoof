@@ -15,6 +15,6 @@ This application is designed to help with pet shelters of any size. The major fu
 ![Screenshot](./homepagegif.gif)
 
 ## Deployed Application
-Click [here](https://) for MeowWoof's live URL.
+Click [here](https://https://shielded-harbor-87736.herokuapp.com/) for MeowWoof's live URL.
 
 Click [here](https://github.com/TeryKing/Project-MeowWoof) for our GitHub Repository.

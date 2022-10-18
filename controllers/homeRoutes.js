@@ -16,16 +16,12 @@ router.get('/', async (req, res) => {
     );
 
     const randomAnimal = animalData[Math.floor(Math.random() * animalData.length)];
-    console.log(randomAnimal)
 
     const residentOne = animalData[Math.floor(Math.random() * animalData.length)];
-    console.log(randomAnimal)
 
     const residentTwo = animalData[Math.floor(Math.random() * animalData.length)];
-    console.log(randomAnimal)
 
     const residentThree = animalData[Math.floor(Math.random() * animalData.length)];
-    console.log(randomAnimal)
 
     res.render('homepage', {
       randomAnimal,
