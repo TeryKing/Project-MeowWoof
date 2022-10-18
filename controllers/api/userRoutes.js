@@ -13,7 +13,9 @@ router.post('/', async (req, res) => {
       });
   console.log(req.body)
       req.session.save(() => {
+        req.session.user_id = newUserData.user_id ;
         req.session.logged_in = true;
+        req.session.is_volunteer = findUser.is_volunteer;
         console.log(req.session)
   
         res.status(200).json(newUserData);
