@@ -10,7 +10,8 @@ const handleSendEmail= async () => {
         headers: { "Content-Type": "application/json" },
     })
     if (response.ok) {
-        document.location.reload();
+        document.location.reload()
+        alert("Your adoption process initiation email has been sent!");
       } else {
         alert("Failed to send email");
       }
