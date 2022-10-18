@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/TeryKing/Project-MeowWoof#readme",
   "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
     "bcrypt": "^5.1.0",
     "connect-session-sequelize": "^7.1.5",
     "date-fns": "^2.29.3",
