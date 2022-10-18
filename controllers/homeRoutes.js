@@ -80,9 +80,14 @@ router.get('/search', async (req, res) => {
     )
     sizes.sort()
     const uniquesizes = [...new Set([...sizes])]
-
+          console.log({ 
+            logged_in: req.session.logged_in,
+            volunteer: req.session.is_volunteer   
+          })
       res.render('search', { 
-        animalData, 
+        animalData: animalData.map((it)=>{
+          return {...it,logged_in:req.session.logged_in}
+        }), 
         uniquespecies,
         uniquebreeds,
         uniquegenders,
@@ -104,9 +109,7 @@ router.get('/search', async (req, res) => {
 //Needs work
 router.get('/results', async (req, res) => {
   try {
-    console.log(req.query.species)
-    console.log(req.query.breed)
-    console.log("yeet", req.query)
+
     const where = {
       ...(req.query.species && { species: req.query.species }),
       ...(req.query.breed && { breed: req.query.breed }),
@@ -115,41 +118,9 @@ router.get('/results', async (req, res) => {
       ...(req.query.size && { size: req.query.size })
 
     }
-    // console.log(where);
+
     const animalData = await Animal.findAll({ raw: true, where });
-    // res.json({species: req.query.species, breed: req.query.breed});
 
-    // if(req.query.species && req.query.breed){
-    //   const animalData = await Animal.findAll(
-    //     {
-    //         where: {
-    //           species: req.query.species,
-    //           breed: req.query.breed
-    //           //add
-
-    //         }
-    //     })
-    // }
-    // else if(req.query.species){
-    //   const animalData = await Animal.findAll(
-    //     {
-    //         where: {
-    //           species: req.query.species,
-    //           //add
-
-    //         }
-    //     })
-    // }
-    // else if(req.query.breed){
-    //   const animalData = await Animal.findAll(
-    //     {
-    //         where: {
-    //           breed: req.query.breed
-    //           //add
-    //         }
-    //     })
-    // }
-    // res.json({ animalData })
     res.render('results', {
       animalData,
       logged_in: req.session.logged_in,
@@ -199,42 +170,47 @@ router.get('/animal/:animal_id', async (req, res) => {
 
 //GOAL:display animals that assign to the volunteer and gets all unassigned animals
 router.get('/dashboard', async (req, res) => {
-  try {
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] }
-    });
-
-    const user = userData.get({ plain: true });
-
-    const assignedAnimalsData = await Animal.findAll({
-      where: {
-        assigned_volunteer: userData.user_id
-      },
-      raw: true
-    })
-
-    const unassignedAnimalsData = await Animal.findAll({
-      where: {
-        assigned_volunteer: null
-      },
-      raw: true
-    })
-
-    // const listUnassignedAnimals = unassignedAnimalsData.map((animal) =>
-    // animal.name);
-    // console.log(unassignedAnimalsData)
-    
-    // res.status(200).json(unassignedAnimalsData);
-
-    res.render('volunteer', {
-      ...user,
-      unassignedAnimalsData,
-      assignedAnimalsData,
-      logged_in: true,
-      volunteer: req.session.is_volunteer
-    });
-  } catch (err) {
-    res.status(500).json(err);
+  if(req.session.is_volunteer === true){
+    try {
+      const userData = await User.findByPk(req.session.user_id, {
+        attributes: { exclude: ['password'] }
+      });
+  
+      const user = userData.get({ plain: true });
+  
+      const assignedAnimalsData = await Animal.findAll({
+        where: {
+          assigned_volunteer: userData.user_id
+        },
+        raw: true
+      })
+  
+      const unassignedAnimalsData = await Animal.findAll({
+        where: {
+          assigned_volunteer: null
+        },
+        raw: true
+      })
+  
+      // const listUnassignedAnimals = unassignedAnimalsData.map((animal) =>
+      // animal.name);
+      // console.log(unassignedAnimalsData)
+      
+      // res.status(200).json(unassignedAnimalsData);
+  
+      res.render('volunteer', {
+        ...user,
+        unassignedAnimalsData,
+        assignedAnimalsData,
+        logged_in: true,
+        volunteer: req.session.is_volunteer
+      });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  }
+  else{
+    res.redirect("/")
   }
 })
 
