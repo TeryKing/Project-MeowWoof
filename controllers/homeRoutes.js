@@ -118,6 +118,7 @@ router.get('/results', async (req, res) => {
       animalData: animalData.map((it)=>{
         return {...it,logged_in:req.session.logged_in}
       }),
+      logged_in: req.session.logged_in,
       volunteer: req.session.is_volunteer
     });
 
