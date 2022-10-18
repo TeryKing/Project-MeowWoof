@@ -44,6 +44,8 @@ router.post('/login', async (req, res) => {
     }
 
     req.session.save(() => {
+      req.session.user_email = findUser.user_email;
+      req.session.user_first_name = findUser.user_first_name;
       req.session.user_id = findUser.user_id;
       req.session.logged_in = true;
       req.session.is_volunteer = findUser.is_volunteer;

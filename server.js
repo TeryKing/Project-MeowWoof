@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
 // const {format} = require('date-fns');
-// const nodemailer = require('nodemailer');
+
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
