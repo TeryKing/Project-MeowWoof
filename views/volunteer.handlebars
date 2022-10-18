@@ -11,36 +11,32 @@
 
 </head>
   
-<main class="flex flex-row"> 
+<main class="flex"> 
   <aside class="w-80" aria-label="Sidebar">
     <div class="overflow-y-auto py-4 px-3 bg-gray-50 rounded">
-      <div class="text-xl font-medium mb-2">Unassiagned Animals</div>
+      <div class="text-xl font-medium mb-2 ">Unassiagned Animals</div>
       <p class="text-sm text-gray-700 mb-4">These are list of animals that are not assigned to anyone. Click accept button to add this animal under your care:</p>
       <ul class="w-72 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200">
             {{#each unassignedAnimalsData as |animal|}} 
             <div>
-              <li class="flex justify-content-between py-2 px-4 w-full rounded-t-lg border-b border-gray-200">{{animal.name}} ({{animal.species}})
-                <button onclick="addAnimaltoCare('{{animal.animal_id}}')" type="click" class="y-2 px-3 text-sm font-medium text-center text-white bg-pink-700 rounded-lg hover:bg-pink-500 focus:ring-4 focus:outline-none focus:ring-pink-300" id="add-to-care">Add to Care</button>
+              <li class="flex justify-content-between py-2 px-4 w-full border-b border-gray-200 hover:bg-gray-200">{{animal.name}} ({{animal.species}})
+                <button onclick="addAnimaltoCare('{{animal.animal_id}}')" type="click" class="y-2 px-3 text-sm font-medium text-center text-white bg-pink-700 rounded-lg hover:bg-pink-600" id="add-to-care">Add to Care</button>
               </li>
             </div>
             {{/each}}
-            {{!-- {{unassignedAnimalsData}} --}}
           </ul>
     </div>
   </aside>
 
-  <section class="col-9">
-    <div class="flex flex-col text-center w-full mt-6">
-      <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">ADOPTABLE PETS</h1>
-    </div>
-
-    {{!-- {{>assignanimals}} --}}
-    {{#each assignedAnimalsData as |animal|}} 
-      {{>assignanimals animal=animal}}
-    {{/each}}
-
-  </section>
-      
+   
+  <div class="flex flex-col text-center w-full">
+    <h1 class="sm:text-3xl text-2xl font-medium title-font mt-10 mb-4 text-gray-900">Adoptable Pets</h1>
+        <div class="flex flex-wrap gap-6 m-6">
+                {{#each assignedAnimalsData as |animal|}}
+                {{>assignanimals animal=animal}}
+                {{/each}}
+        </div>
+  </div>
 </main>
 
 <script src="../js/dashboard.js"></script>

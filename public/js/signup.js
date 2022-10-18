@@ -5,7 +5,7 @@ const signupFormHandler = async (event) => {
   const last_name = document.querySelector("#lastName-signup").value.trim();
   const email = document.querySelector("#email-signup").value.trim();
   const password = document.querySelector("#password-signup").value.trim();
-  const is_volunteer = document.querySelector("#volunteer-signup").value;
+  const is_volunteer = document.querySelector('.volunteerCheckbox').checked;
 
   if (first_name && last_name && email && password) {
     const response = await fetch("/api/user", {
@@ -15,7 +15,7 @@ const signupFormHandler = async (event) => {
         last_name,
         email,
         password,
-        is_volunteer,
+        is_volunteer
       }),
       headers: { "Content-Type": "application/json" },
     });

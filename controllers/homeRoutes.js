@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const { NIL } = require('uuid');
 const { Animal, User } = require('../models');
-//Middleware
 const checkAuth = require('../utils/checkAuth');
 
 // the homepage
@@ -42,8 +41,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-//Goal: reder all the animals. 
-//add the middleware for login
+//Rendering all the animals inside the search. 
 router.get('/search', async (req, res) => {
   try {
     const animalData = await Animal.findAll(
@@ -80,9 +78,14 @@ router.get('/search', async (req, res) => {
     )
     sizes.sort()
     const uniquesizes = [...new Set([...sizes])]
-
+          console.log({ 
+            logged_in: req.session.logged_in,
+            volunteer: req.session.is_volunteer   
+          })
       res.render('search', { 
-        animalData, 
+        animalData: animalData.map((it)=>{
+          return {...it,logged_in:req.session.logged_in}
+        }), 
         uniquespecies,
         uniquebreeds,
         uniquegenders,
@@ -101,12 +104,9 @@ router.get('/search', async (req, res) => {
 });
 
 //this page displays the users preference in animals after hitting the apply filter button
-//Needs work
 router.get('/results', async (req, res) => {
   try {
-    console.log(req.query.species)
-    console.log(req.query.breed)
-    console.log("yeet", req.query)
+
     const where = {
       ...(req.query.species && { species: req.query.species }),
       ...(req.query.breed && { breed: req.query.breed }),
@@ -115,41 +115,9 @@ router.get('/results', async (req, res) => {
       ...(req.query.size && { size: req.query.size })
 
     }
-    // console.log(where);
+
     const animalData = await Animal.findAll({ raw: true, where });
-    // res.json({species: req.query.species, breed: req.query.breed});
 
-    // if(req.query.species && req.query.breed){
-    //   const animalData = await Animal.findAll(
-    //     {
-    //         where: {
-    //           species: req.query.species,
-    //           breed: req.query.breed
-    //           //add
-
-    //         }
-    //     })
-    // }
-    // else if(req.query.species){
-    //   const animalData = await Animal.findAll(
-    //     {
-    //         where: {
-    //           species: req.query.species,
-    //           //add
-
-    //         }
-    //     })
-    // }
-    // else if(req.query.breed){
-    //   const animalData = await Animal.findAll(
-    //     {
-    //         where: {
-    //           breed: req.query.breed
-    //           //add
-    //         }
-    //     })
-    // }
-    // res.json({ animalData })
     res.render('results', {
       animalData,
       logged_in: req.session.logged_in,
@@ -162,168 +130,50 @@ router.get('/results', async (req, res) => {
   }
 });
 
-//when the user clicks on one of the animals, it will render that animal by using its id
-//add middleware
-router.get('/animal/:animal_id', async (req, res) => {
-  try {
-    const animalID = await Animal.findByPk(req.params.animal_id,
-      {
-        raw: true,
-        nest: true,
-      }
-    );
-    // res.status(200).json(animalID);
-    //must be commented out until we have the routes and handlebars working
-    res.render('animal', {
-      animal,
-      logged_in: req.session.logged_in,
-      volunteer: req.session.is_volunteer
-    });
-
-  } catch (err) {
-    res.status(500).json(err);
-  }
-})
-
-//doesn't serve any purpose aside from showing all users
-// router.get('/dashboard', checkAuth, async (req, res) => {
-//       // Find the logged in user based on the session ID
-//       const userData = await User.findAll(
-//         {
-//           raw: true,
-//           nest: true,
-//         })
-
-//       res.status(200).json(userData);
-//     })
-
-//GOAL:display animals that assign to the volunteer and gets all unassigned animals
+//Display animals that assign to the volunteer and gets all unassigned animals
 router.get('/dashboard', async (req, res) => {
-  try {
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] }
-    });
-
-    const user = userData.get({ plain: true });
-
-    const assignedAnimalsData = await Animal.findAll({
-      where: {
-        assigned_volunteer: userData.user_id
-      },
-      raw: true
-    })
-
-    const unassignedAnimalsData = await Animal.findAll({
-      where: {
-        assigned_volunteer: null
-      },
-      raw: true
-    })
-
-    // const listUnassignedAnimals = unassignedAnimalsData.map((animal) =>
-    // animal.name);
-    // console.log(unassignedAnimalsData)
-    
-    // res.status(200).json(unassignedAnimalsData);
-
-    res.render('volunteer', {
-      ...user,
-      unassignedAnimalsData,
-      assignedAnimalsData,
-      logged_in: true,
-      volunteer: req.session.is_volunteer
-    });
-  } catch (err) {
-    res.status(500).json(err);
+  if(req.session.is_volunteer === true){
+    try {
+      const userData = await User.findByPk(req.session.user_id, {
+        attributes: { exclude: ['password'] }
+      });
+  
+      const user = userData.get({ plain: true });
+  
+      const assignedAnimalsData = await Animal.findAll({
+        where: {
+          assigned_volunteer: userData.user_id
+        },
+        raw: true
+      })
+  
+      const unassignedAnimalsData = await Animal.findAll({
+        where: {
+          assigned_volunteer: null
+        },
+        raw: true
+      })
+  
+      res.render('volunteer', {
+        ...user,
+        unassignedAnimalsData,
+        assignedAnimalsData,
+        logged_in: true,
+        volunteer: req.session.is_volunteer
+      });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  }
+  else{
+    res.redirect("/")
   }
 })
-
-
-// add middleware
-// router.get('/dashboard', async (req, res) => {
-//   try {
-//     // Find the logged in user based on the session ID
-//     const userData = await User.findByPk(req.params.user_id, {
-//       attributes: { exclude: ['password'] }
-//     });
-
-//     // const assignedAnimalsData = await Animal.findAll({
-
-//     //   where: {
-//     //     assigned_volunteer: userData.user_id
-
-//     //   },
-//     // }
-//     // )
-
-//     // const unassignedCatsData = await Animal.findAll({
-//     //   where: {
-//     //     assigned_volunteer: userData.user_id
-//     //   },
-//     // }
-//     // )
-    
-//     const unassignedCatsData = await Animal.findAll({
-//       where: {
-//         species: 'Cat',
-//         assigned_volunteer: null
-//       },
-//     }
-//     )
-//     const unassignedDogsData = await Animal.findAll({
-//       where: {
-//         species: 'Dog',
-//         assigned_volunteer: null
-//       }
-//     })
-//     // const assignedAnimals = assignedAnimalsData.map((assignedAnimal) => assignedAnimal.get({ plain: true }));
-//    // cant map (loop) through something that is empty. might have to make array first then push onto it after you try and assign the animal
-//     const unassignedCats = unassignedCatsData.map((cat) => cat.get({ plain: true }));
-//     const unassignedDogs = unassignedDogsData.map((dog) => dog.get({ plain: true }));
-//     // const user = userData.map((user) => user.get({ plain: true }));
-//     // const unassignedCats = unassignedCatsData.map((cat) => cat.get({ plain: true }));
-
-
-//     // res.status(200).json(assignedAnimalsData);
-//     //must be commented out until we have the routes and handlebars working
-
-//     res.render('volunteer', {
-//       // assignedAnimalsData,
-//       dogs: unassignedDogs,
-//       cats: unassignedCats,
-//       logged_in: true
-//     });
-//   } catch (err) {
-//     console.log('err',err)
-//     res.status(500).json(err);
-//   }
-// });
-
-//updating the assigned pets user ID, should happen on submit form in dashboard.js or on unassign from your care.
-// router.put('/dashboard',  async (req, res) => {
-//   try {
-//       const updateAnimal = await Animal.update(
-//           {
-//             assigned_volunteer: req.body.assigned_volunteer,
-//           },
-//           {
-//             where: {
-//               animal_id: req.params.animal_id,
-//             },
-//           }
-//         );
-//       //comment out for now to see if routes work
-//       //   return res.json(updateAnimal);
-//     res.status(200).json(updateAnimal);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// })
 
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.redirect('/'); //needs single targeted filter
+    res.redirect('/'); 
     return;
   }
 
@@ -342,7 +192,6 @@ router.get('/signup', (req, res) => {
 });
 
 
-// add middleware
 router.get('/surrender', async (req, res) => {
   try {
     res.render('surrender', {

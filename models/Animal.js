@@ -5,12 +5,7 @@ class Animal extends Model {}
 
 Animal.init(
   {
-    // animal_id: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: false,
-    //   primaryKey: true,
-    //   autoIncrement: true,
-    // },
+
     animal_id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV1,
@@ -40,9 +35,7 @@ Animal.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    // arrival_date: {
-    //   type: DataTypes.DATEONLY,
-    // },
+
     assigned_volunteer: {
       type: DataTypes.UUID,
       allowNull: true,
