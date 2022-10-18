@@ -1,15 +1,6 @@
-// let checkbox = document.querySelector()
-// let submitBtn = document.querySelector("#submit")
 
-// const assignVoltoPetHandler = async (event) => {
-//     event.preventDefault();
-//     const checkbox = document.querySelector()
-//     cos
-// }
-// const assignedAminal = document.querySelector('#project-name').value.trim();
 
 const addAnimaltoCare = async(animal_id) => {
-    // console.log(animal_id)
     const response = await fetch(`/api/animal/${animal_id}/current_user`,
         {
             method: 'PUT',  
@@ -28,10 +19,8 @@ const addAnimaltoCare = async(animal_id) => {
       }
 
 }
-// }
 
 const unassignAnimaltoCare = async(animal_id) => {
-    // console.log(animal_id)
     const response = await fetch(`/api/animal/${animal_id}`,
         {
             method: 'PUT',  
@@ -52,7 +41,6 @@ const unassignAnimaltoCare = async(animal_id) => {
 }
 
 const adoptedBtn = async(animal_id) => {
-    // console.log(animal_id)
     const response = await fetch(`/api/animal/${animal_id}`,
         {
             method: 'DELETE',  
