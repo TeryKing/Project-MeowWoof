@@ -24,7 +24,6 @@
               </li>
             </div>
             {{/each}}
-            {{!-- {{unassignedAnimalsData}} --}}
           </ul>
     </div>
   </aside>
@@ -34,7 +33,6 @@
       <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">ADOPTABLE PETS</h1>
     </div>
 
-    {{!-- {{>assignanimals}} --}}
     {{#each assignedAnimalsData as |animal|}} 
       {{>assignanimals animal=animal}}
     {{/each}}
