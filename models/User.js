@@ -34,6 +34,7 @@ User.init(
     },
     is_volunteer: {
       type: DataTypes.BOOLEAN,
+      allowNull: true,
     },
 
   },
