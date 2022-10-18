@@ -36,9 +36,9 @@
 </section>
 
 <section class="text-gray-600 body-font">
-  <div class="w-full bg-white rounded-lg border border-gray-200 shadow-md hover:border-pink-600">
+  <div class="w-full bg-white rounded-lg border border-gray-200 shadow-md">
     <div class="flex flex-col items-center pb-10 pt-10">
-          <img class="mb-3 w-50 h-50 full shadow-lg" id="petSpotlight" src="{{randomAnimal.image}}" alt="{{randomAnimal.name}}">
+          <img class="mb-3 max-w-96 max-h-96 shadow-lg" id="petSpotlight" src="{{randomAnimal.image}}" alt="{{randomAnimal.name}}">
           <h5 class="mb-1 text-xl font-medium text-gray-900">{{randomAnimal.name}}</h5>
           <p class="text-lg text-gray-500">Breed: {{randomAnimal.breed}}</p>
           <p class="text-lg text-gray-500">Gender: {{randomAnimal.gender}}</p>
@@ -63,7 +63,7 @@
 </section>
 
 <section>
-  <div class="row d-flex justify-content-around py-5">
+  <div class="flex flex-wrap justify-around gap-6 m-6">
     <div>
       {{>homepageAnimalCard residentOne loggedIn=logged_in}}
     </div>
