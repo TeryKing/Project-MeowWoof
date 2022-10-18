@@ -105,7 +105,7 @@ router.post('/email', async (req, res) => {
       html: `
       <h3>Hello ${user.first_name},</h3> 
       <p>You have begun the adoption process of one of the beautiful animals from MeowWoof Shelter! We are currently processing your request and reviewing your credentials as a potential adopter. This process usually takes between 5-10 business days depending on our request levels. We are excited that you are beginning the process!<br>
-      -Best,
+      -Best,</br>
       MeowWoof Family </p>
       `
     }
