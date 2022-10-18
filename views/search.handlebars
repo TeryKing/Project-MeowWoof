@@ -1,136 +1,94 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MeowWoof</title>
-  <link rel="stylesheet" type="text/css" href="/css/jass.css">
-  <link rel="stylesheet" type="text/css" href="/css/style.css">
-  <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
-</head>
+<main class="flex flex-row">
+    <aside class="w-80 p-2" aria-label="Sidebar">
+        <div class="overflow-y-auto py-4 px-3 bg-gray-50 rounded">
+            <div class="text-xl font-medium mb-2 ">Filter for a pet here:</div>
+            <article>
+                <h3 class="mt-4 font-semibold text-gray-900">Species</h3>
+                <ul class="w-68 text-sm font-medium text-gray-900 bg-white">
+                    {{#each uniquespecies as |species|}}
+                    <li class="w-full content-evenly">
+                        <div class="flex items-center pl-3">
+                            <input onclick="filterClick(this.value, this.checked, this.name)" id='species' name="species={{species}}" type="checkbox" class="form-check-input text-pink-600 bg-gray-100 rounded border-gray-300 focus:ring-pink-500">
+                            <label for="form-check" class="mt-2 ml-2 w-full text-sm font-medium text-gray-900">{{species}}</label>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+            </article>
 
-<section class="flex flex-row ">
-      <div class=" col-3 card">
-    <article class="card-group-item">
-      <header class="card-header">
-        <h6 class="title">Species</h6>
-      </header>
-      <div class="filter-content">
-        <div class="card-body">
-        <form>
-        <label class="form-check">
-            {{#each uniquespecies as |species|}}
-          <input onclick="filterClick(this.value, this.checked, this.name)" class="form-check-input" type="checkbox" name="species={{species}}" id='species'>
-          <span class="form-check-label">
-            {{species}}
-            </span>
-            <br>
+            <article>
+                <h3 class="mt-4 font-semibold text-gray-900">Breed</h3>
+                <ul class="w-68 text-sm font-medium text-gray-900 bg-white">
+                    {{#each uniquebreeds as |breed|}}
+                    <li class="w-full">
+                        <div class="flex items-center pl-3">
+                            <input onclick="filterClick(this.value, this.checked, this.name)" id='breed' name="breed={{breed}}" type="checkbox" value="{{breed}}" class="form-check-input text-pink-600 bg-gray-100 rounded border-gray-300 focus:ring-pink-500">
+                            <label for="form-check" class="mt-2 ml-2 w-full text-sm font-medium text-gray-900">{{breed}}</label>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+            </article>
+
+            <article>
+                <h3 class="mt-4 font-semibold text-gray-900">Gender</h3>
+                <ul class="w-68 text-sm font-medium text-gray-900 bg-white">
+                    {{#each uniquegenders as |gender|}}
+                    <li class="w-full">
+                        <div class="flex items-center pl-3">
+                            <input onclick="filterClick(this.value, this.checked, this.name)"  id='gender' name="gender={{gender}}" type="checkbox" value="{{gender}}" class="form-check-input text-pink-600 bg-gray-100 rounded border-gray-300 focus:ring-pink-500">
+                            <label for="form-check" class="mt-2 ml-2 w-full text-sm font-medium text-gray-900">{{gender}}</label>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+            </article>
+
+            <article>
+                <h3 class="mt-4 font-semibold text-gray-900">Age</h3>
+                <ul class="w-68 text-sm font-medium text-gray-900 bg-white">
+                    {{#each uniqueages as |age|}}
+                    <li class="w-full">
+                        <div class="flex items-center pl-3">
+                            <input onclick="filterClick(this.value, this.checked, this.name)"  id='age' name="age={{age}}" type="checkbox" value="{{age}}" class="form-check-input text-pink-600 bg-gray-100 rounded border-gray-300 focus:ring-pink-500">
+                            <label for="form-check" class="mt-2 ml-2 w-full text-sm font-medium text-gray-900">{{age}}</label>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+            </article>
+
+            <article>
+                <h3 class="mt-4 font-semibold text-gray-900">Size</h3>
+                <ul class="w-68 text-sm font-medium text-gray-900 bg-white">
+                    {{#each uniquesizes as |size|}}
+                    <li class="w-full">
+                        <div class="flex items-center pl-3">
+                            <input onclick="filterClick(this.value, this.checked, this.name)"  id='size' name="size={{size}}"type="checkbox" value="{{size}}" class="form-check-input text-pink-600 bg-gray-100 rounded border-gray-300 focus:ring-pink-500">
+                            <label for="form-check" class="mt-2 ml-2 w-full text-sm font-medium text-gray-900">{{size}}</label>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+            </article>
+
+            <div class="input-group content-center">
+                <button onclick="result()" type="click" id="applyfilter" class="text-white bg-pink-800 hover:bg-pink-700 focus:ring-4 focus:ring-pink-300 font-medium rounded-lg text-sm px-5 py-2.5 mt-4 ml-6">Apply</button>
+            </div>
+        </aside>
+
+    <div class="flex flex-col text-center w-full">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mt-10 mb-4 text-gray-900">Adoptable Pets</h1>
+        <div class="flex flex-wrap gap-6 m-6">
+            {{#each animalData as |animal|}}
+            {{>animalcard animal=animal loggedIn=logged_in}}
             {{/each}}
-        </label> <!-- form-check.// -->
-        </form>
-
-    </article> <!-- card-group-item.// -->
-    
-    <article class="card-group-item">
-      <header class="card-header">
-        <h6 class="title">Breed</h6>
-      </header>
-      <div class="filter-content">
-        <div class="card-body">
-        <label class="form-check">
-            {{#each uniquebreeds as |breed|}}
-          <input onclick="filterClick(this.value, this.checked, this.name)" class="form-check-input" type="checkbox" name="breed={{breed}}" id='breed' value="{{breed}}">
-          <span class="form-check-label">
-            {{breed}}
-            </span>
-            <br>
-            {{/each}}
-        </label>
         </div>
-      </div>
-    </article>
-    <article class="card-group-item">
-      <header class="card-header">
-        <h6 class="title">Gender</h6>
-      </header>
-      <div class="filter-content">
-        <div class="card-body">
-        <label class="form-check">
-            {{#each uniquegenders as |gender|}}
-          <input onclick="filterClick(this.value, this.checked, this.name)" class="form-check-input" type="checkbox" name="gender={{gender}}" id='gender' value="{{gender}}">
-          <span class="form-check-label">
-          {{gender}}
-          </span>
-          <br>
-            {{/each}}
-
-        </label>
-        </div>
-      </div>
-    </article>
-    <article class="card-group-item">
-      <header class="card-header">
-        <h6 class="title">Age</h6>
-      </header>
-      <div class="filter-content">
-        <div class="card-body">
-        <label class="form-check">
-            {{#each uniqueages as |age|}}
-          <input onclick="filterClick(this.value, this.checked, this.name)" class="form-check-input" type="checkbox" name="age={{age}}" id='age' value="{{age}}">
-          <span class="form-check-label">
-            {{age}}
-          </span>
-          <br>
-            {{/each}}
-
-        </label>
-        </div>
-      </div>
-    </article>
-    <article class="card-group-item">
-      <header class="card-header">
-        <h6 class="title">Size</h6>
-      </header>
-      <div class="filter-content">
-        <div class="card-body">
-        <label class="form-check">
-            {{#each uniquesizes as |size|}}
-            <input onclick="filterClick(this.value, this.checked, this.name)" class="form-check-input" type="checkbox" name="size={{size}}" id='size' value="{{size}}">
-            <span class="form-check-label">
-              {{size}}
-            </span>
-            <br>
-            {{/each}}
-
-        </label>
-        </div>
-      </div>
-    </article>
-    <div class="input-group">
-      <button onclick="result()" type="click" class="btn btn-outline-primary" id="applyfilter">Apply</button>
     </div>
-</div>
 
+    </aside>
+</main>
 
-  <main class="text-gray-600 body-font">
-    <div class="container px-5 py-24 mx-auto">
-      <div class="flex flex-col text-center w-full mb-20">
-        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Adoptable Pets</h1>
-      </div>
-      <div class="flex flex-wrap m-6">
-        {{#each animalData as |animal|}}
-        {{>animalcard animal=animal loggedIn=logged_in}} 
-        {{/each}}
-      </div>
-    </div>
-  </main>
-</section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="../js/filter.js"></script>
-<script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</html>
+

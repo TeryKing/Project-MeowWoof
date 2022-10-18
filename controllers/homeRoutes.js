@@ -115,8 +115,9 @@ router.get('/results', async (req, res) => {
     const animalData = await Animal.findAll({ raw: true, where });
 
     res.render('results', {
-      animalData,
-      logged_in: req.session.logged_in,
+      animalData: animalData.map((it)=>{
+        return {...it,logged_in:req.session.logged_in}
+      }),
       volunteer: req.session.is_volunteer
     });
 
