@@ -1,17 +1,12 @@
 let checkedarrays = [];
 
 function filterClick(value, checked, name){
-    console.log(value)
-    console.log(checked)
-    console.log(name)
 
     if(checked == true){
         checkedarrays.push(name);
-        console.log("1", checkedarrays)
     }
     else if(checked !== -1){
         checkedarrays.splice(checked, 1)
-        console.log("2", checkedarrays)
     }
 }
 

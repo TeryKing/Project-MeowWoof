@@ -9,12 +9,7 @@ class User extends Model {
 }
 User.init(
   {
-    // user_id: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: false,
-    //   primaryKey: true,
-    //   autoIncrement: true,
-    // },
+
     user_id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV1,
@@ -36,21 +31,11 @@ User.init(
     password: {
       type: DataTypes.STRING,
       allowNull: false,
-      //   Uncomment and adjust length value if we want to set a min password length requirement
-      //   validate: {
-      //     len: [10],
-      //   },
     },
     is_volunteer: {
       type: DataTypes.BOOLEAN,
     },
-    // assigned_pet: {
-    //   type: DataTypes.INTEGER,
-    //   references: {
-    //     model: 'animal',
-    //     key: 'animal_id',
-    //   },
-    // },
+
   },
   {
     hooks: {
