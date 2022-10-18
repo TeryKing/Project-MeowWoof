@@ -31,11 +31,15 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-pink-600 focus:border-pink-600 block w-full p-2.5"
                                 required="">
                         </div>
-                        <div class="">
-                            <label for="size" class="block mb-2 text-sm font-medium text-gray-900">Optional:</label>
+                        <div>
+                            <p class="block mb-2 text-sm font-medium text-gray-900">Would you like become a volunteer?</p>
                             <div class="flex items-center mb-4">
-                                <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-pink-600 bg-gray-100 rounded border-gray-300 focus:ring-pink-500">
-                                <label for="default-checkbox" class="mt-2 ml-2 text-sm font-medium text-gray-900">Become a volunteer</label>
+                                <input type="checkbox" value="true" class="w-4 h-4 text-pink-600 bg-gray-100 rounded border-gray-300 focus:ring-pink-500 volunteerCheckbox">
+                                <label for="volunteer-signup-yes" class="mt-2 ml-2 text-sm font-medium text-gray-900">Yes</label>
+                            </div>
+                            <div class="flex items-center mb-4">
+                                <input type="checkbox" value="false" class="w-4 h-4 text-pink-600 bg-gray-100 rounded border-gray-300 focus:ring-pink-500 volunteerCheckbox">
+                                <label for="volunteer-signup-no" class="mt-2 ml-2 text-sm font-medium text-gray-900">No</label>
                             </div>
                         </div>
                         <button type="submit" id="signup-submit"
