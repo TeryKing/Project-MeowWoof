@@ -92,7 +92,7 @@
         <h1 class="sm:text-3xl text-2xl font-medium title-font mt-10 mb-4 text-gray-900">Adoptable Pets</h1>
         <div class="flex flex-wrap gap-6 m-6">
             {{#each animalData as |animal|}}
-            {{>animalcard animal=animal}}
+            {{>animalcard animal=animal loggedIn=logged_in}}
             {{/each}}
         </div>
     </div>
