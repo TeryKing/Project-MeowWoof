@@ -17,4 +17,3 @@ const handleSendEmail= async () => {
       }
 }
 
-// submit.addEventListener('submit', handleSendEmail)

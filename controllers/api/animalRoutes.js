@@ -17,7 +17,7 @@ router.post('/',async (req, res) => {
     }
   });
   
-  //delete animal when its adopted => press adopted btn (it will remove the animal from the db)
+  //Delete animal when its adopted => press adopted btn (it will remove the animal from the db)
   router.delete('/:animal_id', async (req, res) => {
     try {
       const animalData = await Animal.destroy({
@@ -37,9 +37,9 @@ router.post('/',async (req, res) => {
     }
   });
 
-//dashboard specifally in the aside of the unassigned animals
-//updates animal info
-//the voluteer id is hard coded to the current user id
+//Dashboard specifally in the aside of the unassigned animals
+//Updates animal info
+//The voluteer id is hard coded to the current user id
 router.put('/:animal_id/current_user', async (req, res) => {
   try {
 
@@ -67,7 +67,7 @@ router.put('/:animal_id/current_user', async (req, res) => {
     res.status(500).json(err);
   }
 })
-//volunteer id comes from the body (use this when you want to reassign the animal to someone else that is not the current user)
+//Volunteer id comes from the body (use this when you want to reassign the animal to someone else that is not the current user)
 router.put('/:animal_id', async (req, res) => {
     try {
 

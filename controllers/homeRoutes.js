@@ -3,8 +3,8 @@ const { NIL } = require('uuid');
 const { Animal, User } = require('../models');
 const checkAuth = require('../utils/checkAuth');
 
-// the homepage
-//it will render a random animal to be the pet of the day
+// The homepage
+//This will render a random animal to be the pet of the day
 router.get('/', async (req, res) => {
   try {
     const animalData = await Animal.findAll(
@@ -37,6 +37,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+//Search
 //Rendering all the animals inside the search. 
 router.get('/search', async (req, res) => {
   try {
@@ -99,7 +100,8 @@ router.get('/search', async (req, res) => {
   }
 });
 
-//this page displays the users preference in animals after hitting the apply filter button
+//Results
+//This page displays the users preference in animals after hitting the apply filter button
 router.get('/results', async (req, res) => {
   try {
 
@@ -128,6 +130,7 @@ router.get('/results', async (req, res) => {
   }
 });
 
+//Volunteer's Dashboard
 //Display animals that assign to the volunteer and gets all unassigned animals
 router.get('/dashboard', async (req, res) => {
   if(req.session.is_volunteer === true){

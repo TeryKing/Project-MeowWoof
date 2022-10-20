@@ -27,7 +27,7 @@ const sess = {
 
 app.use(session(sess));
 
-// in case we created some helper functions
+// Using our built in helpers
 const hbs = exphbs.create({});
 
 // Inform Express.js which template engine we're using

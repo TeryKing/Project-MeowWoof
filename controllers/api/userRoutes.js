@@ -50,7 +50,6 @@ router.post('/login', async (req, res) => {
       req.session.user_id = findUser.user_id;
       req.session.logged_in = true;
       req.session.is_volunteer = findUser.is_volunteer;
-      console.log('who is volunteer' + req.session.is_volunteer);
       res.json({ user: findUser, message: 'You are logged in' });
     });
 
@@ -70,26 +69,16 @@ router.post('/logout', (req, res) => {
   }
 });
 
-// router.get('/email/current_user',async (req, res) => {
-//   try {
-//     const user = await User.
-
-//   } catch{
-
-//   }})
 router.post('/email', async (req, res) => {
-  //try catch with error
-  //use sequelize using the user ID that is stored in the session to then
-  console.log('Hello')
+  //Try catch with error
+  //Use sequelize using the user ID that is stored in the session to then
   
   try {  
-    console.log('this is being read 1')
-    console.log(req.session)
+
     const userData = await User.findByPk(req.session.user_id, {
     attributes: { exclude: ['password'] }
   });
     const user = userData.get({ plain: true });
-    console.log("This is user", user)
     const msg = {
       to: user.email,
       from: "meowwoof.shelter@gmail.com",
