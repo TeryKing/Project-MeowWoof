@@ -55,7 +55,7 @@ Finally, type this command in the terminal to run the application.
 
 ## Deployed Application
 
-Click [here](https://https://shielded-harbor-87736.herokuapp.com/) for MeowWoof's live URL.
+Click [here](https://sleepy-lake-64431.herokuapp.com/) for MeowWoof's live URL.
 
 Click [here](https://github.com/TeryKing/Project-MeowWoof) for our GitHub Repository.
 
